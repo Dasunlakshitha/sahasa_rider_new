@@ -58,7 +58,7 @@ class _LogInState extends State<LogIn> {
         result = await Api().loginApi(
             loginData.username, loginData.password, loginData.subdomain);
 
-        if (result.done = false) {
+        if (!result.done) {
           errorMessage(result.message);
           setState(() {
             loading = false;
