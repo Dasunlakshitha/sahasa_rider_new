@@ -3,7 +3,7 @@ class ConfirmOrders {
   List<Body> body;
   String message;
 
-  ConfirmOrders({this.done, this.body, this.message});
+  ConfirmOrders({done, body, message});
 
   ConfirmOrders.fromJson(Map<String, dynamic> json) {
     done = json['done'];
@@ -18,11 +18,11 @@ class ConfirmOrders {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['done'] = this.done;
-    if (this.body != null) {
-      data['body'] = this.body.map((v) => v.toJson()).toList();
+    data['done'] = done;
+    if (body != null) {
+      data['body'] = body.map((v) => v.toJson()).toList();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -67,17 +67,17 @@ class Body {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order_type'] = this.orderType;
-    data['id'] = this.id;
-    data['contact_name'] = this.contactName;
-    data['delivery_time'] = this.deliveryTime;
-    data['order_no'] = this.orderNo;
-    data['address'] = this.address;
-    data['last_updated'] = this.lastUpdated;
-    data['order_status'] = this.orderStatus;
-    if (this.partners != null) {
-      data['partners'] = this.partners.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['order_type'] = orderType;
+    data['id'] = id;
+    data['contact_name'] = contactName;
+    data['delivery_time'] = deliveryTime;
+    data['order_no'] = orderNo;
+    data['address'] = address;
+    data['last_updated'] = lastUpdated;
+    data['order_status'] = orderStatus;
+    if (partners != null) {
+      data['partners'] = partners.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -86,15 +86,15 @@ class Body {
 class Partners {
   var name;
 
-  Partners({this.name});
+  Partners({name});
 
   Partners.fromJson(Map<String, dynamic> json) {
     name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['name'] = name;
     return data;
   }
 }

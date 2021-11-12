@@ -14,10 +14,10 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  bool buttonLoading = false;
   final _formKey = GlobalKey<FormState>();
   Users result = Users();
   final LoginData loginData = LoginData();
-  bool loading = false;
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -50,9 +50,9 @@ class _LogInState extends State<LogIn> {
   _login() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      if (!loading) {
+      if (!buttonLoading) {
         setState(() {
-          loading = true;
+          buttonLoading = true;
         });
         result = await Api().loginApi(
             loginData.username, loginData.password, loginData.subdomain);
@@ -60,14 +60,14 @@ class _LogInState extends State<LogIn> {
         if (!result.done) {
           errorMessage(result.message);
           setState(() {
-            loading = false;
+            buttonLoading = false;
           });
         } else {
-          // await saveStringValue('user', jsonEncode(this.result.body.user));
+          // await saveStringValue('user', jsonEncode(result.body.user));
           // if (await readStringValue('token') != '') {
           //   await SendUser().deleteDeviceToken();
           // }
-          // await SendUser().saveDeviceToken(this.result.body.user.accountId);
+          // await SendUser().saveDeviceToken(result.body.user.accountId);
           // setState(() {s
           // });
 
@@ -181,7 +181,7 @@ class _LogInState extends State<LogIn> {
                 fillColor: Colors.black,
                 hintStyle: TextStyle(fontSize: 15, color: Colors.white70),
                 hintText: 'Password',
-                //suffixIcon: IconButton(onPressed:(){},icon: Icon(Icons.visibility_off)),
+                // suffixIcon:IconButton(onPressed: (){}, icon: Icon(Icons.visibility_off)),
               ),
             ),
           ],
@@ -203,14 +203,17 @@ class _LogInState extends State<LogIn> {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [Color(0xff206BE2), Color(0xff206BE2)])),
-        // child: loading
-        //     ? const CircularProgressIndicator()
-        //    : const Text(
-        child: const Text(
-          'Login',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white),
-        ),
+        child: buttonLoading
+            ? const CircularProgressIndicator(
+                color: Colors.orange,
+              )
+            : const Text(
+                "Login",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.white),
+              ),
       ),
     );
   }

@@ -1,7 +1,6 @@
-
 class CompleteOrder {
-  DateTime startDate = new DateTime.now().subtract(new Duration(days: 1));
-  DateTime endDate = new DateTime.now();
+  DateTime startDate = DateTime.now().subtract(Duration(days: 1));
+  DateTime endDate = DateTime.now();
   num limit = 10;
   num offset = 0;
 }

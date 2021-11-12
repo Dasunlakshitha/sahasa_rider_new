@@ -3,7 +3,7 @@ class NewOrders {
   List<Body> body;
   String message;
 
-  NewOrders({this.done, this.body, this.message});
+  NewOrders({done, body, message});
 
   NewOrders.fromJson(Map<String, dynamic> json) {
     done = json['done'];
@@ -18,11 +18,11 @@ class NewOrders {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['done'] = this.done;
-    if (this.body != null) {
-      data['body'] = this.body.map((v) => v.toJson()).toList();
+    data['done'] = done;
+    if (body != null) {
+      data['body'] = body.map((v) => v.toJson()).toList();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -64,16 +64,16 @@ class Body {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order_no'] = this.orderNo;
-    data['delivery_time'] = this.deliveryTime;
-    data['order_type'] = this.orderType;
-    data['address'] = this.address;
-    data['id'] = this.id;
-    data['contact_name'] = this.contactName;
-    data['last_updated'] = this.lastUpdated;
-    if (this.partners != null) {
-      data['partners'] = this.partners.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['order_no'] = orderNo;
+    data['delivery_time'] = deliveryTime;
+    data['order_type'] = orderType;
+    data['address'] = address;
+    data['id'] = id;
+    data['contact_name'] = contactName;
+    data['last_updated'] = lastUpdated;
+    if (partners != null) {
+      data['partners'] = partners.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -82,7 +82,7 @@ class Body {
 class Partners {
   var name;
 
-  Partners({this.name});
+  Partners({name});
 
   Partners.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -90,7 +90,7 @@ class Partners {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    data['name'] = name;
     return data;
   }
 }

@@ -3,26 +3,26 @@ class CompletedOrders {
   List<Body> body;
   String message;
 
-  CompletedOrders({this.done, this.body, this.message});
+  CompletedOrders({done, body, message});
 
   CompletedOrders.fromJson(Map<String, dynamic> json) {
     done = json['done'];
     if (json['body'] != null) {
-      body = new List<Body>();
+      body = List<Body>();
       json['body'].forEach((v) {
-        body.add(new Body.fromJson(v));
+        body.add(Body.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['done'] = this.done;
-    if (this.body != null) {
-      data['body'] = this.body.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['done'] = done;
+    if (body != null) {
+      data['body'] = body.map((v) => v.toJson()).toList();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -59,15 +59,15 @@ class Body {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order_type'] = this.orderType;
-    data['id'] = this.id;
-    data['delivery_time'] = this.deliveryTime;
-    data['order_no'] = this.orderNo;
-    data['address'] = this.address;
-    data['status'] = this.status;
-    data['date'] = this.date;
-    data['last_updated'] = this.lastUpdated;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['order_type'] = orderType;
+    data['id'] = id;
+    data['delivery_time'] = deliveryTime;
+    data['order_no'] = orderNo;
+    data['address'] = address;
+    data['status'] = status;
+    data['date'] = date;
+    data['last_updated'] = lastUpdated;
     return data;
   }
 }
