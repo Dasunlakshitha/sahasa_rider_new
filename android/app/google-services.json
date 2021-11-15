@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "590283755660",
+    "firebase_url": "https://sahasa-988.firebaseio.com",
+    "project_id": "sahasa-988",
+    "storage_bucket": "sahasa-988.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590283755660:android:e95b138626862f85a42ba9",
+        "android_client_info": {
+          "package_name": "com.sahasa.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALxPbXAV74zet1DuL6PLTE6xV6Cmk1bAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590283755660:android:b18edb3fc2c2bfb9a42ba9",
+        "android_client_info": {
+          "package_name": "com.sahasa.rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALxPbXAV74zet1DuL6PLTE6xV6Cmk1bAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

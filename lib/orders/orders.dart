@@ -41,22 +41,21 @@ class _OrdersState extends State<Orders> {
 
   int newOrdersCount = 0;
   int confirmOrdersCount = 0;
-  AcceptOrder accept = new AcceptOrder();
-  Users data = new Users();
+  AcceptOrder accept = AcceptOrder();
+  Users data = Users();
   bool loading = true;
   bool newLoading = false;
   bool rejectLoading = false;
-  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
   MyGlobals myGlobals = MyGlobals();
   bool pressAll = true;
   bool pressNew = false;
   bool pressConfirm = false;
   bool newItemsLoading = true;
   bool confirmItemsLoading = true;
-  OrdersMdl newOrders = new OrdersMdl();
-  OrdersMdl confirmOrders = new OrdersMdl();
-  OrdersMdl newOrdersTmp = new OrdersMdl();
-  OrdersMdl confirmOrdersTmp = new OrdersMdl();
+  OrdersMdl newOrders = OrdersMdl();
+  OrdersMdl confirmOrders = OrdersMdl();
+  OrdersMdl newOrdersTmp = OrdersMdl();
+  OrdersMdl confirmOrdersTmp = OrdersMdl();
   Timer timer;
 
   @override
