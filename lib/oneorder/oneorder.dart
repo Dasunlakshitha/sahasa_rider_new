@@ -9,6 +9,7 @@ import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/calculateDistance.dart';
 import 'package:sahasa_rider_new/helpers/localvariables.dart';
+import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/order.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -1156,5 +1157,3 @@ class _OneOrderState extends State<OneOrder> {
           );
   }
 }
-
-SendUser() {}

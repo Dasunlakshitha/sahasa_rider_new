@@ -102,8 +102,8 @@ class Api {
       await setCookie();
       Response response =
           await _dio.post('$baseUrl/secure/deliver/login', data: {
-        'username': username,
-        'password': password
+        'username': 'Suranga',
+        'password': 'suranga1234'
         // 'subdomain': subDomain
       });
       // return (response.data);

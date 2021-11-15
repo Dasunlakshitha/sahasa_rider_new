@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sahasa_rider_new/login.dart';
 import 'package:sahasa_rider_new/api/api.dart';
+import 'package:sahasa_rider_new/orders/orders.dart';
+import 'package:sahasa_rider_new/orders/orders_new.dart';
 
 //import 'package:new_sahasa_rider/src/screens/trackPath/trackPath.dart';
 
@@ -111,12 +113,13 @@ class _SideDrawerState extends State<SideDrawer> {
                           ],
                         ),
                         onTap: () {
-                          // Navigator.of(context).pop();
-                          // if (index == 0) {
-                          //   Navigator.of(context).push(MaterialPageRoute(
-                          //       builder: (BuildContext context) =>
-                          //           Orders(screenNum: index)));
-                          // } else if (index == 1) {
+                          Navigator.of(context).pop();
+                          if (index == 0) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    NewOrder(screenNum: index)));
+                          }
+                          // else if (index == 1) {
                           //   Navigator.of(context).push(MaterialPageRoute(
                           //       builder: (BuildContext context) =>
                           //           AllOrders(screenNum: index)));

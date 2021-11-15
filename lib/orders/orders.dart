@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/refresh.dart';
+import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
@@ -393,7 +394,7 @@ class _OrdersState extends State<Orders> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextFormField(
@@ -412,7 +413,7 @@ class _OrdersState extends State<Orders> {
               hintText: 'Search',
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],
@@ -445,43 +446,6 @@ class _OrdersState extends State<Orders> {
       });
       (context as Element).reassemble();
     }
-    // _getMoreData(this._searchData.offset, false);
-    // } else if (name == 'Confirmed') {
-    //   setState(() {
-    //     pressAll = false;
-    //     pressConfirm = true;
-    //     pressReady = false;
-    //     pressIssued = false;
-    //     pressNew = false;
-    //     pressCanceled = false;
-    //     this._searchData.status = name;
-    //     this._searchData.offset = 0;
-    //   });
-    //   // _getMoreData(this._searchData.offset, false);
-    // } else if (name == 'Issued') {
-    //   setState(() {
-    //     pressAll = false;
-    //     pressConfirm = false;
-    //     pressReady = false;
-    //     pressIssued = true;
-    //     pressNew = false;
-    //     pressCanceled = false;
-    //     this._searchData.status = name;
-    //     this._searchData.offset = 0;
-    //   });
-    //   // _getMoreData(this._searchData.offset, false);
-    // } else if (name == 'Canceled') {
-    //   setState(() {
-    //     pressCanceled = true;
-    //     pressAll = false;
-    //     pressConfirm = false;
-    //     pressReady = false;
-    //     pressIssued = false;
-    //     pressNew = false;
-    //     this._searchData.status = name;
-    //     this._searchData.offset = 0;
-    //   });
-    // }
   }
 
   Widget _searchButtons() {
@@ -575,78 +539,6 @@ class _OrdersState extends State<Orders> {
               },
             ),
           ),
-          // new Container(
-          //   margin: const EdgeInsets.only(right: 10.0),
-          //   child: InkWell(
-          //     child: Container(
-          //         decoration: BoxDecoration(
-          //             color: pressReady ? Colors.green : Colors.white,
-          //             borderRadius: BorderRadius.circular(25),
-          //             border: Border.all(
-          //                 color: pressReady ? Colors.white : Colors.green)),
-          //         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          //         child: Center(
-          //           child: Text(
-          //             'Ready (10)',
-          //             style: TextStyle(
-          //                 fontSize: ScreenUtil().setSp(34),
-          //                 color: pressReady ? Colors.white : Colors.green,
-          //                 fontWeight: FontWeight.bold),
-          //           ),
-          //         )),
-          //     onTap: () {
-          //       changeCategory('Ready');
-          //     },
-          //   ),
-          // ),
-          // new Container(
-          //   margin: const EdgeInsets.only(right: 10.0),
-          //   child: InkWell(
-          //     child: Container(
-          //         decoration: BoxDecoration(
-          //             color: pressIssued ? Colors.grey : Colors.white,
-          //             borderRadius: BorderRadius.circular(25),
-          //             border: Border.all(
-          //                 color: pressIssued ? Colors.white : Colors.grey)),
-          //         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          //         child: Center(
-          //           child: Text(
-          //             'Issued (10)',
-          //             style: TextStyle(
-          //                 fontSize: ScreenUtil().setSp(34),
-          //                 color: pressIssued ? Colors.white : Colors.grey,
-          //                 fontWeight: FontWeight.bold),
-          //           ),
-          //         )),
-          //     onTap: () {
-          //       changeCategory('Issued');
-          //     },
-          //   ),
-          // ),
-          // new Container(
-          //   margin: const EdgeInsets.only(right: 10.0),
-          //   child: InkWell(
-          //     child: Container(
-          //         decoration: BoxDecoration(
-          //             color: pressCanceled ? Colors.red : Colors.white,
-          //             borderRadius: BorderRadius.circular(25),
-          //             border: Border.all(
-          //                 color: pressCanceled ? Colors.white : Colors.red)),
-          //         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          //         child: Center(
-          //           child: Text(
-          //             'Canceled (10)',
-          //             style: TextStyle(
-          //                 fontSize: ScreenUtil().setSp(34),
-          //                 color: pressCanceled ? Colors.white : Colors.red,
-          //                 fontWeight: FontWeight.bold),
-          //           ),
-          //         )),
-          //     onTap: () {
-          //       changeCategory('Canceled');
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );
@@ -684,16 +576,25 @@ class _OrdersState extends State<Orders> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      // padding: EdgeInsets.only(top:5,bottom: 5,left: 15,right: 15),
-                      child: Text(
-                        'Order No: ${items[i].orderNo}',
-                        style: TextStyle(
-                            fontSize: ScreenUtil().setSp(15),
-                            fontWeight: FontWeight.bold),
-                      ),
+                    Text(
+                      'Order No: ${items[i].orderNo}',
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(15),
+                          fontWeight: FontWeight.bold),
                     ),
-                    Divider(),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Address :  ${items[i].address}',
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(15),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Divider(),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -748,47 +649,28 @@ class _OrdersState extends State<Orders> {
     );
   }
 
-  //   },
-  // );
-  // }
-
   Widget _newItems() {
     return Container(
-      child: newItemsLoading
-          ? Shimmer.fromColors(
-              child: LoadingNew(),
-              baseColor: Colors.white,
-              highlightColor: Colors.grey[200])
+      child: newItemsLoading || confirmItemsLoading
+          ? loadingItems()
           : newItems(newOrders.body),
     );
-    // return FutureBuilder(
-    //   future: Api().newOrders(context),
-    //   builder: (context, projectSnap) {
-    //     if (projectSnap.hasError) {
-    //       errorMessage('Unknown Error occurred. Please contact developer.');
-    //       return Container();
-    //     } else if (projectSnap.hasData) {
-    //       if (projectSnap.data.message != null) {
-    //         errorMessage(projectSnap.data.message);
-    //         return Container();
-    //       } else {
-    //         //  setState(() {
-    //         this.newOrdersCount = projectSnap.data.body.length;
-    //         // });
-    //         if (this.pressAll || this.pressNew) {
-    //           return newItems(projectSnap.data.body);
-    //         } else {
-    //           return Container();
-    //         }
-    //       }
-    //     } else {
-    //       return Shimmer.fromColors(
-    //           child: LoadingNew(),
-    //           baseColor: Colors.white,
-    //           highlightColor: Colors.grey[200]);
-    //     }
-    //   },
-    // );
+  }
+
+  Widget _confirmItems() {
+    return Container(
+      child: confirmItemsLoading || newItemsLoading
+          ? Container()
+          : confirmItems(confirmOrders.body),
+    );
+  }
+
+  Widget loadingItems() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: Colors.greenAccent,
+      ),
+    );
   }
 
   _confirm(id, type) async {
@@ -1043,43 +925,6 @@ class _OrdersState extends State<Orders> {
         ]);
   }
 
-  Widget _confirmItems() {
-    return Container(
-      child: confirmItemsLoading
-          ? Shimmer.fromColors(
-              child: LoadConfirm(),
-              baseColor: Colors.white,
-              highlightColor: Colors.grey[200])
-          : confirmItems(confirmOrders.body),
-    );
-    // return FutureBuilder(
-    //   future: Api().confirmOrders(context),
-    //   builder: (context, projectSnap) {
-    //     if (projectSnap.hasError) {
-    //       errorMessage('Unknown Error occurred. Please contact developer.');
-    //       return Container();
-    //     } else if (projectSnap.hasData) {
-    //       if (projectSnap.data.message != null) {
-    //         errorMessage(projectSnap.data.message);
-    //         return Container();
-    //       } else {
-    //         if (this.pressAll || this.pressConfirm) {
-    //           this.confirmOrdersCount = projectSnap.data.body.length;
-    //           return confirmItems(projectSnap.data.body);
-    //         } else {
-    //           return Container();
-    //         }
-    //       }
-    //     } else {
-    //       return Shimmer.fromColors(
-    //           child: LoadConfirm(),
-    //           baseColor: Colors.white,
-    //           highlightColor: Colors.grey[200]);
-    //     }
-    //   },
-    // );
-  }
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(
@@ -1092,80 +937,77 @@ class _OrdersState extends State<Orders> {
 
     return WillPopScope(
         key: myGlobals.scaffoldKey,
-        child: loading
-            ? Loading()
-            : Builder(
-                builder: (BuildContext context) {
-                  return OfflineBuilder(
-                    connectivityBuilder: (
-                      BuildContext context,
-                      ConnectivityResult connectivity,
-                      Widget child,
-                    ) {
-                      if (connectivity == ConnectivityResult.none) {
-                        return NoConnection();
-                      } else {
-                        return child;
-                      }
-                    },
+        child: Builder(
+          builder: (BuildContext context) {
+            return OfflineBuilder(
+              connectivityBuilder: (
+                BuildContext context,
+                ConnectivityResult connectivity,
+                Widget child,
+              ) {
+                if (connectivity == ConnectivityResult.none) {
+                  return const NoConnection();
+                } else {
+                  return child;
+                }
+              },
+              builder: (BuildContext context) {
+                return Scaffold(
+                  backgroundColor: const Color(0xff2c3539),
+                  appBar: _appBar(),
+                  body: Builder(
                     builder: (BuildContext context) {
-                      return Scaffold(
-                        backgroundColor: const Color(0xff2c3539),
-                        appBar: _appBar(),
-                        body: Builder(
-                          builder: (BuildContext context) {
-                            return OfflineBuilder(
-                              connectivityBuilder: (
-                                BuildContext context,
-                                ConnectivityResult connectivity,
-                                Widget child,
-                              ) {
-                                if (connectivity == ConnectivityResult.none) {
-                                  return NoConnection();
-                                } else {
-                                  return child;
-                                }
-                              },
-                              builder: (BuildContext context) {
-                                return LoadingOverlay(
-                                  progressIndicator:
-                                      const CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
-                                  ),
-                                  color: Colors.black,
-                                  isLoading: newLoading || rejectLoading,
-                                  child: CustomScrollView(
-                                    slivers: <Widget>[
-                                      SliverToBoxAdapter(
-                                        child: _searchButtons(),
-                                      ),
-                                      SliverToBoxAdapter(
-                                        child: pressAll || pressNew
-                                            ? _newItems()
-                                            : Container(),
-                                      ),
-                                      SliverToBoxAdapter(
-                                        child: pressAll || pressConfirm
-                                            ? _confirmItems()
-                                            : Container(),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          // ),
-                        ),
-                        drawer: SideDrawer(
-                          screenNo: screenNum,
-                        ),
+                      return OfflineBuilder(
+                        connectivityBuilder: (
+                          BuildContext context,
+                          ConnectivityResult connectivity,
+                          Widget child,
+                        ) {
+                          if (connectivity == ConnectivityResult.none) {
+                            return const NoConnection();
+                          } else {
+                            return child;
+                          }
+                        },
+                        builder: (BuildContext context) {
+                          return LoadingOverlay(
+                            progressIndicator: const CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                            color: Colors.black,
+                            isLoading: newLoading || rejectLoading,
+                            child: CustomScrollView(
+                              slivers: <Widget>[
+                                SliverToBoxAdapter(
+                                  child: _searchButtons(),
+                                ),
+                                SliverToBoxAdapter(
+                                  child: pressAll || pressNew
+                                      ? _newItems()
+                                      : Container(),
+                                ),
+                                SliverToBoxAdapter(
+                                  child: pressAll || pressConfirm
+                                      ? _confirmItems()
+                                      : Container(),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-              ),
+                    // ),
+                  ),
+                  drawer: SideDrawer(
+                    screenNo: screenNum,
+                  ),
+                );
+              },
+            );
+          },
+        ),
         onWillPop: () {
           print('pop');
         });

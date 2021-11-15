@@ -6,6 +6,7 @@ import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/toast.dart';
 
 import 'orders/orders.dart';
+import 'orders/orders_new.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key key}) : super(key: key);
@@ -75,7 +76,7 @@ class _LogInState extends State<LogIn> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Orders(
+                  builder: (context) => NewOrder(
                         screenNum: null,
                       )));
         }
