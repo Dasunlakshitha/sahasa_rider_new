@@ -19,19 +19,19 @@ import 'dart:async';
 import '../drawer.dart';
 import '../toast.dart';
 
-class NewOrder extends StatefulWidget {
+class OrdersNew extends StatefulWidget {
   final int screenNum;
-  NewOrder({this.screenNum});
+  OrdersNew({this.screenNum});
 
   @override
-  _NewOrderState createState() => _NewOrderState(screenNum);
+  _OrdersNewState createState() => _OrdersNewState(screenNum);
 }
 
-class _NewOrderState extends State<NewOrder> {
+class _OrdersNewState extends State<OrdersNew> {
   final int screenNum;
   final _formKey = GlobalKey<FormState>();
 
-  _NewOrderState(this.screenNum);
+  _OrdersNewState(this.screenNum);
 
   int newOrdersCount = 0;
   int confirmOrdersCount = 0;
@@ -62,6 +62,12 @@ class _NewOrderState extends State<NewOrder> {
     // SystemChrome.setPreferredOrientations([
     //   DeviceOrientation.portraitUp,
     // ]);
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   getData() async {
@@ -160,6 +166,7 @@ class _NewOrderState extends State<NewOrder> {
         }
       }, builder: (BuildContext context) {
         return Scaffold(
+            backgroundColor: Colors.white12,
             appBar: AppBar(
               backgroundColor: Colors.black12,
               title: Row(
@@ -216,7 +223,6 @@ class _NewOrderState extends State<NewOrder> {
                                 vertical: 20.0, horizontal: 20),
                             height: 40.0,
                             child: ListView(
-                              // shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               addAutomaticKeepAlives: true,
                               children: <Widget>[
@@ -316,7 +322,7 @@ class _NewOrderState extends State<NewOrder> {
                           child: pressAll || pressNew
                               ? Container(
                                   child: newItemsLoading || confirmItemsLoading
-                                      ? loadingItems()
+                                      ? _newItems()
                                       : newItems(newOrders.body),
                                 )
                               : Container(),
@@ -325,8 +331,8 @@ class _NewOrderState extends State<NewOrder> {
                           child: pressAll || pressConfirm
                               ? Container(
                                   child: confirmItemsLoading || newItemsLoading
-                                      ? Container()
-                                      : confirmItems(confirmOrders.body),
+                                      ? _confirmItems()
+                                      : Container(),
                                 )
                               : Container(),
                         ),
@@ -799,4 +805,12 @@ class _NewOrderState extends State<NewOrder> {
       ),
     );
   }
+}
+
+class MyGlobals {
+  GlobalKey _scaffoldKey;
+  MyGlobals() {
+    _scaffoldKey = GlobalKey();
+  }
+  GlobalKey get scaffoldKey => _scaffoldKey;
 }
