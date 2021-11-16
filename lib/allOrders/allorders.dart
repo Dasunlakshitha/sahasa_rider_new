@@ -3,8 +3,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
+//import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
+//import 'package:date_range_picker/date_range_picker.dart' as drpicker;
+//import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/connection_check/connection_check.dart';
@@ -27,7 +30,6 @@ class AllOrders extends StatefulWidget {
 
 class _AllOrdersState extends State<AllOrders> {
   final int screenNum;
-
   _AllOrdersState(this.screenNum);
 
   bool pressAll = true;
@@ -102,20 +104,32 @@ class _AllOrdersState extends State<AllOrders> {
     );
   }
 
-  Widget _searchDates() {
-    return Container(
-      alignment: Alignment(1, 0),
-      width: MediaQuery.of(context).size.width * 0.201,
-      child: FlatButton.icon(
-          onPressed: () {
-            // _openDate();
-          },
-          icon: Icon(
-            Icons.search,
-            color: Colors.white70,
-          ),
-          label: Text('')),
+  Future _openStartDate() async {
+    var datePicked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
     );
+    if (datePicked == null) return;
+    setState(() {
+      data.startDate = datePicked;
+      data.offset = 0;
+    });
+  }
+
+  Future _openEndDate() async {
+    var datePicked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    );
+    if (datePicked == null) return;
+    setState(() {
+      data.endDate = datePicked;
+      data.offset = 0;
+    });
   }
 
   Widget _search() {
@@ -128,15 +142,19 @@ class _AllOrdersState extends State<AllOrders> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.23,
-                  child: Text(
-                    Jiffy(data.endDate).format('MMM do yy'),
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: TextButton(
+                      onPressed: () {
+                        _openStartDate();
+                      },
+                      child: Text(
+                        getStartDate(),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
                 Text(
                   ' - ',
                   style: TextStyle(
@@ -145,22 +163,42 @@ class _AllOrdersState extends State<AllOrders> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: Text(
-                    Jiffy(data.startDate).format('MMM do yy'),
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: TextButton(
+                      onPressed: () {
+                        _openEndDate();
+                      },
+                      child: Text(
+                        getLastDate(),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
               ],
             ),
           ],
         ),
-        _searchDates(),
+        //_searchDates(),
       ],
     );
+  }
+
+  getLastDate() {
+    if (data.endDate == null) {
+      return 'end date';
+    } else {
+      return Jiffy(data.endDate).format('MMM do yy');
+    }
+  }
+
+  getStartDate() {
+    if (data.endDate == null) {
+      return 'start date';
+    } else {
+      return Jiffy(data.startDate).format('MMM do yy');
+    }
   }
 
   Widget _cardDet(item) {
@@ -289,7 +327,7 @@ class _AllOrdersState extends State<AllOrders> {
   Widget _orders() {
     return Container(
       margin: const EdgeInsets.only(top: 10),
-      height: MediaQuery.of(context).size.height - 230,
+      height: MediaQuery.of(context).size.height - 200,
       child: ListView.builder(
         shrinkWrap: true,
         addAutomaticKeepAlives: true,
@@ -503,14 +541,14 @@ class _AllOrdersState extends State<AllOrders> {
                         )
                       : Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(vertical: 20.0),
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               Container(
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 10),
-                                padding: const EdgeInsets.only(left: 20),
+                                padding: const EdgeInsets.only(left: 15),
                                 color: Colors.transparent,
                                 child: _search(),
                               ),

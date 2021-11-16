@@ -165,7 +165,7 @@ class _OrdersNewState extends State<OrdersNew> {
         }
       }, builder: (BuildContext context) {
         return Scaffold(
-            backgroundColor: Colors.white12,
+            backgroundColor: const Color(0xff2c3539),
             appBar: AppBar(
               backgroundColor: Colors.black12,
               title: Row(

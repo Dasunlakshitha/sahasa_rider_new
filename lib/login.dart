@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:sahasa_rider_new/api/api.dart';
@@ -5,6 +6,8 @@ import 'package:sahasa_rider_new/models/login.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/toast.dart';
 
+import 'helpers/localvariables.dart';
+import 'helpers/sendfirebase.dart';
 import 'orders/orders.dart';
 import 'orders/orders_new.dart';
 
@@ -70,15 +73,16 @@ class _LogInState extends State<LogIn> {
           //   await SendUser().deleteDeviceToken();
           // }
           // await SendUser().saveDeviceToken(result.body.user.accountId);
-          // setState(() {s
-          // });
+          // setState(() {});
 
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => OrdersNew(
-                        screenNum: null,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => OrdersNew(
+                screenNum: null,
+              ),
+            ),
+          );
         }
       }
     }

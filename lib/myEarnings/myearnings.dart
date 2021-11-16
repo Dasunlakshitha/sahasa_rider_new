@@ -83,74 +83,89 @@ class _MyEarningsState extends State<MyEarnings> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  child: Text(
-                    Jiffy(data.endDate).format('MMM do yy'),
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(15),
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: TextButton(
+                      onPressed: () {
+                        _openStartDate();
+                      },
+                      child: Text(
+                        getStartDate(),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
                 Text(
                   ' - ',
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(15),
+                      fontSize: ScreenUtil().setSp(25),
                       color: Colors.white70,
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: Text(
-                    Jiffy(data.startDate).format('MMM do yy'),
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(15),
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: TextButton(
+                      onPressed: () {
+                        _openEndDate();
+                      },
+                      child: Text(
+                        getLastDate(),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
               ],
             ),
           ],
         ),
-        _searchDates(),
       ],
     );
   }
 
-  Widget _searchDates() {
-    return Container(
-      alignment: const Alignment(1, 0),
-      width: MediaQuery.of(context).size.width * 0.201,
-      child: FlatButton.icon(
-          onPressed: () {
-            // _openDate();
-          },
-          icon: const Icon(
-            Icons.search,
-            color: Colors.white70,
-          ),
-          label: const Text('')),
-    );
+  getLastDate() {
+    if (data.endDate == null) {
+      return 'end date';
+    } else {
+      return Jiffy(data.endDate).format('MMM do yy');
+    }
   }
 
-  // _openDate() async {
-  //   var dte = await DateRagePicker.showDatePicker(
-  //       context: context,
-  //       initialFirstDate: new DateTime.now().subtract(new Duration(days: 2)),
-  //       initialLastDate: (new DateTime.now()),
-  //       firstDate: new DateTime(2019),
-  //       lastDate: new DateTime.now());
-  //   setState(() {
-  //     this.data.startDate = dte[0];
-  //     this.data.endDate = dte[1];
-  //     this.loading = true;
-  //   });
-  //   await getData();
-  //   setState(() {
-  //     this.loading = false;
-  //   });
-  // }
+  getStartDate() {
+    if (data.endDate == null) {
+      return 'start date';
+    } else {
+      return Jiffy(data.startDate).format('MMM do yy');
+    }
+  }
+
+  Future _openStartDate() async {
+    var datePicked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    );
+    if (datePicked == null) return;
+    setState(() {
+      data.startDate = datePicked;
+    });
+  }
+
+  Future _openEndDate() async {
+    var datePicked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    );
+    if (datePicked == null) return;
+    setState(() {
+      data.endDate = datePicked;
+    });
+  }
 
   Widget summery() {
     return Container(
@@ -1500,7 +1515,7 @@ class _MyEarningsState extends State<MyEarnings> {
               body: SingleChildScrollView(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(vertical: 20.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: loading
                       ? const Center(
                           child: CircularProgressIndicator(),
@@ -1511,7 +1526,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.only(left: 20),
+                              padding: const EdgeInsets.only(left: 15),
                               color: Colors.transparent,
                               child: _search(),
                             ),

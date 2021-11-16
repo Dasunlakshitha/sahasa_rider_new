@@ -491,7 +491,7 @@ packages:
     source: hosted
     version: "2.2.0"
   soundpool_macos:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: soundpool_macos
       url: "https://pub.dartlang.org"
@@ -505,7 +505,7 @@ packages:
     source: hosted
     version: "2.1.0"
   soundpool_web:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: soundpool_web
       url: "https://pub.dartlang.org"

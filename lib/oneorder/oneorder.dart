@@ -481,7 +481,7 @@ class _OneOrderState extends State<OneOrder> {
                     child: Text(
                       partner.name,
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(18),
+                          fontSize: (18),
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                     ),
@@ -830,7 +830,7 @@ class _OneOrderState extends State<OneOrder> {
                     color: Colors.white70),
               ),
               Text(
-                'Rs. ${num.parse(this.order.body.distanceValue).toStringAsFixed(2)}',
+                'Rs. ${num.parse(order.body.distanceValue).toStringAsFixed(2)}',
                 style: TextStyle(
                     fontSize: (18),
                     fontWeight: FontWeight.bold,
@@ -839,7 +839,7 @@ class _OneOrderState extends State<OneOrder> {
             ],
           ),
         ),
-        if (this.order.body.convenienceFee != '0')
+        if (order.body.convenienceFee != '0')
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             margin: EdgeInsets.only(top: 5),
@@ -856,7 +856,7 @@ class _OneOrderState extends State<OneOrder> {
                       color: Colors.white70),
                 ),
                 Text(
-                  'Rs. ${num.parse(this.order.body.convenienceFee).toStringAsFixed(2)}',
+                  'Rs. ${num.parse(order.body.convenienceFee).toStringAsFixed(2)}',
                   style: TextStyle(
                       fontSize: (18),
                       fontWeight: FontWeight.bold,
@@ -882,7 +882,7 @@ class _OneOrderState extends State<OneOrder> {
                     color: Colors.white70),
               ),
               Text(
-                'Rs. ${(num.parse(this.order.body.convenienceFee) + num.parse(this.order.body.distanceValue) + num.parse(this.order.body.subTotal)).toStringAsFixed(2)}',
+                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal)).toStringAsFixed(2)}',
                 style: TextStyle(
                     color: Colors.white70,
                     fontSize: (20),
@@ -907,7 +907,7 @@ class _OneOrderState extends State<OneOrder> {
                     color: Colors.white70),
               ),
               Text(
-                'Rs. ${(num.parse(this.order.body.convenienceFee) + num.parse(this.order.body.distanceValue) + num.parse(this.order.body.subTotal) - num.parse(this.order.body.remain)).toStringAsFixed(2)}',
+                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal) - num.parse(this.order.body.remain)).toStringAsFixed(2)}',
                 style: TextStyle(
                     color: Colors.blue,
                     fontSize: (18),
@@ -938,12 +938,14 @@ class _OneOrderState extends State<OneOrder> {
           },
           builder: (BuildContext context) {
             return Container(
+              color: Color(0xff2c3539),
               child: loading
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
                   : Scaffold(
                       backgroundColor: Color(0xff2c3539),
+
                       appBar: _appBar(),
                       body: LoadingOverlay(
                         progressIndicator: CircularProgressIndicator(
@@ -961,7 +963,7 @@ class _OneOrderState extends State<OneOrder> {
                               Text(
                                 'Delivery Details',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: (18),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white70),
                               ),
@@ -974,7 +976,7 @@ class _OneOrderState extends State<OneOrder> {
                                 child: Text(
                                   'Pickup Details',
                                   style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(18),
+                                      fontSize: (18),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white70),
                                 ),
@@ -1000,21 +1002,21 @@ class _OneOrderState extends State<OneOrder> {
                                 'Remaining Amount',
                                 style: TextStyle(
                                     color: Colors.white70,
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: (15),
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Rs. ${num.parse(this.order.body.remain).toStringAsFixed(2)}',
+                                'Rs. ${num.parse(order.body.remain).toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: Colors.greenAccent,
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: (15),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                         ),
                         Divider(),
-                        if (this.order.body.remain == '0')
+                        if (order.body.remain == '0')
                           Row(
                             children: <Widget>[
                               Container(
@@ -1028,8 +1030,7 @@ class _OneOrderState extends State<OneOrder> {
                                   child: Text(
                                     'Paid',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
-                                        color: Colors.white),
+                                        fontSize: (15), color: Colors.white),
                                   ),
                                   onPressed: () {},
                                   shape: RoundedRectangleBorder(
@@ -1049,7 +1050,7 @@ class _OneOrderState extends State<OneOrder> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 if (!(order.body.orderStatus == 'Delivered' ||
-                                    this.order.body.orderStatus == 'Returned'))
+                                    order.body.orderStatus == 'Returned'))
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
@@ -1061,15 +1062,15 @@ class _OneOrderState extends State<OneOrder> {
                                       child: Text(
                                         'Return Order',
                                         style: TextStyle(
-                                            fontSize: ScreenUtil().setSp(12),
+                                            fontSize: (12),
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       onPressed: () {
                                         setState(() {
-                                          this.buttonStatus = 'Returned';
+                                          buttonStatus = 'Returned';
                                         });
-                                        _update(this.buttonStatus);
+                                        _update(buttonStatus);
                                       },
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -1082,9 +1083,8 @@ class _OneOrderState extends State<OneOrder> {
                             ),
                             Row(
                               children: <Widget>[
-                                if (!(this.order.body.orderStatus ==
-                                        'Delivered' ||
-                                    this.order.body.orderStatus == 'Returned'))
+                                if (!(order.body.orderStatus == 'Delivered' ||
+                                    order.body.orderStatus == 'Returned'))
                                   Container(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 10),
@@ -1092,57 +1092,50 @@ class _OneOrderState extends State<OneOrder> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.3,
                                     child: FlatButton(
-                                      color: this.order.body.orderStatus ==
-                                              'On the way'
-                                          ? Colors.purple
-                                          : Colors.blue,
-                                      child: this.order.body.orderStatus ==
+                                      color:
+                                          order.body.orderStatus == 'On the way'
+                                              ? Colors.purple
+                                              : Colors.blue,
+                                      child: order.body.orderStatus ==
                                               'On the way'
                                           ? Text(
                                               'Deliver Order',
                                               style: TextStyle(
-                                                  fontSize:
-                                                      ScreenUtil().setSp(12),
+                                                  fontSize: (12),
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold),
                                             )
                                           : Text(
                                               'Pickup Order',
                                               style: TextStyle(
-                                                  fontSize:
-                                                      ScreenUtil().setSp(15),
+                                                  fontSize: (15),
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                       onPressed: () {
-                                        // if (this.order.body.orderStatus !=
+                                        // if (order.body.orderStatus !=
                                         //     'Being Prepared') {
-                                        if (this.order.body.orderStatus ==
-                                                'Ready' ||
-                                            this.order.body.orderStatus ==
+                                        if (order.body.orderStatus == 'Ready' ||
+                                            order.body.orderStatus ==
                                                 'Being Prepared') {
                                           setState(() {
-                                            this.buttonStatus = 'On the way';
+                                            buttonStatus = 'On the way';
                                           });
-                                        } else if (this
-                                                .order
-                                                .body
-                                                .orderStatus ==
+                                        } else if (order.body.orderStatus ==
                                             'On the way') {
                                           setState(() {
-                                            this.buttonStatus = 'Delivered';
+                                            buttonStatus = 'Delivered';
                                           });
                                         }
-                                        _update(this.buttonStatus);
+                                        _update(buttonStatus);
                                         // }
                                       },
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(
-                                              color:
-                                                  this.order.body.orderStatus ==
-                                                          'On the way'
-                                                      ? Colors.purple
-                                                      : Colors.blue,
+                                              color: order.body.orderStatus ==
+                                                      'On the way'
+                                                  ? Colors.purple
+                                                  : Colors.blue,
                                               width: 2),
                                           borderRadius:
                                               BorderRadius.circular(5)),

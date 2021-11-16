@@ -29,11 +29,11 @@ class _SideDrawerState extends State<SideDrawer> {
     });
     bool log = await Api().logout();
     if (log) {
-      // Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => login()),
-      //   (Route<dynamic> route) => false,
-      // );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const LogIn()),
+        (Route<dynamic> route) => false,
+      );
     }
     setState(() {
       loading = false;
