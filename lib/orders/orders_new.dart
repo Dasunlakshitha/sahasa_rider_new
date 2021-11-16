@@ -12,7 +12,6 @@ import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
-import 'package:sahasa_rider_new/oneorder/loading.dart';
 import 'package:sahasa_rider_new/oneorder/oneorder.dart';
 import 'package:sahasa_rider_new/orders/orders.dart';
 import 'dart:async';
@@ -331,9 +330,8 @@ class _OrdersNewState extends State<OrdersNew> {
                           child: pressAll || pressConfirm
                               ? Container(
                                   child: confirmItemsLoading || newItemsLoading
-                                      ? _confirmItems()
-                                      : Container(),
-                                )
+                                      ? Container()
+                                      : _confirmItems())
                               : Container(),
                         ),
                       ],

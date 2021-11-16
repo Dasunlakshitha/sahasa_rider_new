@@ -59,7 +59,7 @@ class Body {
     totalCashDelivery = json['total_cash_delivery'];
     totalOnlineOrders = json['total_online_orders'];
     totalOnlineDelivery = json['total_online_delivery'];
-    onlineCash = json['online_cash'];
+    onlineCash = json['online_cash'] ?? 0;
     if (json['items'] != null) {
       items = new List<Items>();
       json['items'].forEach((v) {
@@ -71,21 +71,21 @@ class Body {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['pick_cash'] = this.pickCash;
-    data['order_cash'] = this.orderCash;
-    data['total_pickup'] = this.totalPickup;
-    data['delivery_cash'] = this.deliveryCash;
-    data['total_cash_orders'] = this.totalCashOrders;
-    data['total_cash_delivery'] = this.totalCashDelivery;
-    data['total_online_orders'] = this.totalOnlineOrders;
-    data['total_online_delivery'] = this.totalOnlineDelivery;
-    data['online_cash'] = this.onlineCash;
-    if (this.items != null) {
-      data['items'] = this.items.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['pick_cash'] = pickCash;
+    data['order_cash'] = orderCash;
+    data['total_pickup'] = totalPickup;
+    data['delivery_cash'] = deliveryCash;
+    data['total_cash_orders'] = totalCashOrders;
+    data['total_cash_delivery'] = totalCashDelivery;
+    data['total_online_orders'] = totalOnlineOrders;
+    data['total_online_delivery'] = totalOnlineDelivery;
+    data['online_cash'] = onlineCash;
+    if (items != null) {
+      data['items'] = items.map((v) => v.toJson()).toList();
     }
-    data['totalOnlineBonus'] = this.totalOnlineBonus;
-    data['totalCashBonus'] = this.totalCashBonus;
+    data['totalOnlineBonus'] = totalOnlineBonus;
+    data['totalCashBonus'] = totalCashBonus;
     return data;
   }
 }
@@ -128,7 +128,7 @@ class Items {
 
   Items.fromJson(Map<String, dynamic> json) {
     pickCash = json['pick_cash'];
-    orderCash = json['order_cash'];
+    orderCash = json['order_cash'] ?? 0;
     totalPickup = json['total_pickup'];
     deliveryCash = json['delivery_cash'];
     endCashBonus = json['end_cash_bonus'];
@@ -141,28 +141,28 @@ class Items {
     totalOnlineDelivery = json['total_online_delivery'];
     onlineBonus = json['online_bonus'];
     cashBonus = json['cash_bonus'];
-    onlineCash = json['online_cash'];
+    onlineCash = json['online_cash'] ?? 0;
     orderDate = json['order_date'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['pick_cash'] = this.pickCash;
-    data['order_cash'] = this.orderCash;
-    data['total_pickup'] = this.totalPickup;
-    data['delivery_cash'] = this.deliveryCash;
-    data['end_cash_bonus'] = this.endCashBonus;
-    data['end_online_bonus'] = this.endOnlineBonus;
-    data['start_cash_bonus'] = this.startCashBonus;
-    data['total_cash_orders'] = this.totalCashOrders;
-    data['start_online_bonus'] = this.startOnlineBonus;
-    data['total_cash_delivery'] = this.totalCashDelivery;
-    data['total_online_orders'] = this.totalOnlineOrders;
-    data['total_online_delivery'] = this.totalOnlineDelivery;
-    data['online_bonus'] = this.onlineBonus;
-    data['cash_bonus'] = this.cashBonus;
-    data['online_cash'] = this.onlineCash;
-    data['order_date'] = this.orderDate;
+    data['pick_cash'] = pickCash;
+    data['order_cash'] = orderCash;
+    data['total_pickup'] = totalPickup;
+    data['delivery_cash'] = deliveryCash;
+    data['end_cash_bonus'] = endCashBonus;
+    data['end_online_bonus'] = endOnlineBonus;
+    data['start_cash_bonus'] = startCashBonus;
+    data['total_cash_orders'] = totalCashOrders;
+    data['start_online_bonus'] = startOnlineBonus;
+    data['total_cash_delivery'] = totalCashDelivery;
+    data['total_online_orders'] = totalOnlineOrders;
+    data['total_online_delivery'] = totalOnlineDelivery;
+    data['online_bonus'] = onlineBonus;
+    data['cash_bonus'] = cashBonus;
+    data['online_cash'] = onlineCash;
+    data['order_date'] = orderDate;
     return data;
   }
 }

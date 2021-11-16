@@ -20,7 +20,6 @@ import 'package:background_geolocation_plugin/location_item.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../toast.dart';
-import 'loading.dart';
 
 class OneOrder extends StatefulWidget {
   final String id;
@@ -101,7 +100,7 @@ class _OneOrderState extends State<OneOrder> {
     if (order.message != null) {
       errorMessage(order.message);
       setState(() {
-        this.loading = false;
+        loading = false;
       });
     } else {
       setState(() {
@@ -116,8 +115,8 @@ class _OneOrderState extends State<OneOrder> {
       loadingUpdate = true;
     });
     update = await Api().updateOrder(context, buttonStatus, returnNote, id);
-    if (this.update.message != null) {
-      errorMessage(this.update.message);
+    if (update.message != null) {
+      errorMessage(update.message);
     } else {
       successMessage('Successfully Changed.');
     }
@@ -172,7 +171,7 @@ class _OneOrderState extends State<OneOrder> {
               padding: const EdgeInsets.all(0),
               color: statusColor,
               child: Text(
-                this.order.body.orderStatus,
+                order.body.orderStatus,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: (14), color: Colors.white),
               ),
@@ -923,237 +922,246 @@ class _OneOrderState extends State<OneOrder> {
 
   @override
   Widget build(BuildContext context) {
-    // ScreenUtil.init(context, width: 640, height: 1136);
-
-    return this.loading
-        ? Loading()
-        : Builder(
-            builder: (BuildContext context) {
-              return OfflineBuilder(
-                connectivityBuilder: (
-                  BuildContext context,
-                  ConnectivityResult connectivity,
-                  Widget child,
-                ) {
-                  if (connectivity == ConnectivityResult.none) {
-                    return NoConnection();
-                  } else {
-                    return child;
-                  }
-                },
-                builder: (BuildContext context) {
-                  return Scaffold(
-                    backgroundColor: Color(0xff2c3539),
-                    appBar: _appBar(),
-                    body: LoadingOverlay(
-                      progressIndicator: CircularProgressIndicator(
-                        valueColor:
-                            new AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                      color: Colors.black,
-                      isLoading: this.loadingUpdate,
-                      child: SingleChildScrollView(
-                        padding: EdgeInsets.only(top: 10, left: 20, right: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Delivery Details',
-                              style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(18),
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70),
-                            ),
-                            _deliveryDet(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Pickup Details',
+    return Builder(
+      builder: (BuildContext context) {
+        return OfflineBuilder(
+          connectivityBuilder: (
+            BuildContext context,
+            ConnectivityResult connectivity,
+            Widget child,
+          ) {
+            if (connectivity == ConnectivityResult.none) {
+              return NoConnection();
+            } else {
+              return child;
+            }
+          },
+          builder: (BuildContext context) {
+            return Container(
+              child: loading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Scaffold(
+                      backgroundColor: Color(0xff2c3539),
+                      appBar: _appBar(),
+                      body: LoadingOverlay(
+                        progressIndicator: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                        color: Colors.black,
+                        isLoading: loadingUpdate,
+                        child: SingleChildScrollView(
+                          padding:
+                              EdgeInsets.only(top: 10, left: 20, right: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Delivery Details',
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white70),
                               ),
-                            ),
-                            _items(),
-                            _bottom(),
-                            SizedBox(height: 5)
-                          ],
-                        ),
-                      ),
-                    ),
-                    persistentFooterButtons: <Widget>[
-                      // Divider(),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        margin: EdgeInsets.only(top: 10),
-                        width: MediaQuery.of(context).size.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Text(
-                              'Remaining Amount',
-                              style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: ScreenUtil().setSp(15),
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Rs. ${num.parse(this.order.body.remain).toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: ScreenUtil().setSp(15),
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                      if (this.order.body.remain == '0')
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              height: 20,
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              child: FlatButton(
-                                padding: EdgeInsets.all(0),
-                                color: Colors.deepPurpleAccent,
-                                child: Text(
-                                  'Paid',
-                                  style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(15),
-                                      color: Colors.white),
-                                ),
-                                onPressed: () {},
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25)),
+                              _deliveryDet(),
+                              SizedBox(
+                                height: 20,
                               ),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Pickup Details',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(18),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white70),
+                                ),
+                              ),
+                              _items(),
+                              _bottom(),
+                              SizedBox(height: 5)
+                            ],
+                          ),
+                        ),
+                      ),
+                      persistentFooterButtons: <Widget>[
+                        // Divider(),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          margin: EdgeInsets.only(top: 10),
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Text(
+                                'Remaining Amount',
+                                style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: ScreenUtil().setSp(15),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Rs. ${num.parse(this.order.body.remain).toStringAsFixed(2)}',
+                                style: TextStyle(
+                                    color: Colors.greenAccent,
+                                    fontSize: ScreenUtil().setSp(15),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(),
+                        if (this.order.body.remain == '0')
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                height: 20,
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                child: FlatButton(
+                                  padding: EdgeInsets.all(0),
+                                  color: Colors.deepPurpleAccent,
+                                  child: Text(
+                                    'Paid',
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(15),
+                                        color: Colors.white),
+                                  ),
+                                  onPressed: () {},
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        // Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                if (!(order.body.orderStatus == 'Delivered' ||
+                                    this.order.body.orderStatus == 'Returned'))
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    height: 40,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    child: FlatButton(
+                                      color: Colors.red,
+                                      child: Text(
+                                        'Return Order',
+                                        style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(12),
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          this.buttonStatus = 'Returned';
+                                        });
+                                        _update(this.buttonStatus);
+                                      },
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Colors.red, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                if (!(this.order.body.orderStatus ==
+                                        'Delivered' ||
+                                    this.order.body.orderStatus == 'Returned'))
+                                  Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    height: 40,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    child: FlatButton(
+                                      color: this.order.body.orderStatus ==
+                                              'On the way'
+                                          ? Colors.purple
+                                          : Colors.blue,
+                                      child: this.order.body.orderStatus ==
+                                              'On the way'
+                                          ? Text(
+                                              'Deliver Order',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      ScreenUtil().setSp(12),
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          : Text(
+                                              'Pickup Order',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      ScreenUtil().setSp(15),
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                      onPressed: () {
+                                        // if (this.order.body.orderStatus !=
+                                        //     'Being Prepared') {
+                                        if (this.order.body.orderStatus ==
+                                                'Ready' ||
+                                            this.order.body.orderStatus ==
+                                                'Being Prepared') {
+                                          setState(() {
+                                            this.buttonStatus = 'On the way';
+                                          });
+                                        } else if (this
+                                                .order
+                                                .body
+                                                .orderStatus ==
+                                            'On the way') {
+                                          setState(() {
+                                            this.buttonStatus = 'Delivered';
+                                          });
+                                        }
+                                        _update(this.buttonStatus);
+                                        // }
+                                      },
+                                      shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color:
+                                                  this.order.body.orderStatus ==
+                                                          'On the way'
+                                                      ? Colors.purple
+                                                      : Colors.blue,
+                                              width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),
-                      // Divider(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              if (!(order.body.orderStatus == 'Delivered' ||
-                                  this.order.body.orderStatus == 'Returned'))
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  height: 40,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.3,
-                                  child: FlatButton(
-                                    color: Colors.red,
-                                    child: Text(
-                                      'Return Order',
-                                      style: TextStyle(
-                                          fontSize: ScreenUtil().setSp(12),
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        this.buttonStatus = 'Returned';
-                                      });
-                                      _update(this.buttonStatus);
-                                    },
-                                    shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            color: Colors.red, width: 2),
-                                        borderRadius: BorderRadius.circular(5)),
-                                  ),
-                                ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              if (!(this.order.body.orderStatus ==
-                                      'Delivered' ||
-                                  this.order.body.orderStatus == 'Returned'))
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  height: 40,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.3,
-                                  child: FlatButton(
-                                    color: this.order.body.orderStatus ==
-                                            'On the way'
-                                        ? Colors.purple
-                                        : Colors.blue,
-                                    child: this.order.body.orderStatus ==
-                                            'On the way'
-                                        ? Text(
-                                            'Deliver Order',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(12),
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        : Text(
-                                            'Pickup Order',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(15),
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                    onPressed: () {
-                                      // if (this.order.body.orderStatus !=
-                                      //     'Being Prepared') {
-                                      if (this.order.body.orderStatus ==
-                                              'Ready' ||
-                                          this.order.body.orderStatus ==
-                                              'Being Prepared') {
-                                        setState(() {
-                                          this.buttonStatus = 'On the way';
-                                        });
-                                      } else if (this.order.body.orderStatus ==
-                                          'On the way') {
-                                        setState(() {
-                                          this.buttonStatus = 'Delivered';
-                                        });
-                                      }
-                                      _update(this.buttonStatus);
-                                      // }
-                                    },
-                                    shape: RoundedRectangleBorder(
-                                        side: BorderSide(
-                                            color:
-                                                this.order.body.orderStatus ==
-                                                        'On the way'
-                                                    ? Colors.purple
-                                                    : Colors.blue,
-                                            width: 2),
-                                        borderRadius: BorderRadius.circular(5)),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                    // ),
-                    //   ),
-                    // ],
-                  );
-                },
-              );
-            },
-            // ),
-          );
+                      ],
+                      // ),
+                      //   ),
+                      // ],
+                    ),
+            );
+          },
+        );
+      },
+      // ),
+    );
   }
 }

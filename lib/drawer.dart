@@ -4,6 +4,9 @@ import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/orders/orders.dart';
 import 'package:sahasa_rider_new/orders/orders_new.dart';
 
+import 'allOrders/allorders.dart';
+import 'myEarnings/myearnings.dart';
+
 //import 'package:new_sahasa_rider/src/screens/trackPath/trackPath.dart';
 
 class SideDrawer extends StatefulWidget {
@@ -119,15 +122,15 @@ class _SideDrawerState extends State<SideDrawer> {
                                 builder: (BuildContext context) =>
                                     OrdersNew(screenNum: index)));
                           }
-                          // else if (index == 1) {
-                          //   Navigator.of(context).push(MaterialPageRoute(
-                          //       builder: (BuildContext context) =>
-                          //           AllOrders(screenNum: index)));
-                          // } else if (index == 2) {
-                          //   Navigator.of(context).push(MaterialPageRoute(
-                          //       builder: (BuildContext context) =>
-                          //           MyEarnings(screenNum: index)));
-                          // }
+                          else if (index == 1) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    AllOrders(screenNum: index)));
+                           } else if (index == 2) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    MyEarnings(screenNum: index)));
+                          }
                         },
                       ),
                     );
