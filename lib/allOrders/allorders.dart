@@ -43,6 +43,7 @@ class _AllOrdersState extends State<AllOrders> {
   bool loadingMore = false;
   bool loadingSearch = false;
   bool isConnected = false;
+  bool loadingDate;
 
   @override
   void initState() {
@@ -62,10 +63,12 @@ class _AllOrdersState extends State<AllOrders> {
       errorMessage(dataOrders.message);
       setState(() {
         loading = false;
+        loadingDate = false;
       });
     } else {
       setState(() {
         loading = false;
+        loadingDate = false;
         if (status) {
           orders = orders + dataOrders.body;
         } else {
@@ -107,7 +110,7 @@ class _AllOrdersState extends State<AllOrders> {
   Future _openStartDate() async {
     var datePicked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: data.startDate,
       firstDate: DateTime(2019),
       lastDate: DateTime.now(),
     );
@@ -116,12 +119,15 @@ class _AllOrdersState extends State<AllOrders> {
       data.startDate = datePicked;
       data.offset = 0;
     });
+    orders.clear();
+    getData(false);
+    loadingDate = true;
   }
 
   Future _openEndDate() async {
     var datePicked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: data.endDate,
       firstDate: DateTime(2019),
       lastDate: DateTime.now(),
     );
@@ -130,6 +136,9 @@ class _AllOrdersState extends State<AllOrders> {
       data.endDate = datePicked;
       data.offset = 0;
     });
+    orders.clear();
+    getData(false);
+    loadingDate = true;
   }
 
   Widget _search() {
@@ -552,7 +561,13 @@ class _AllOrdersState extends State<AllOrders> {
                                 color: Colors.transparent,
                                 child: _search(),
                               ),
-                              loadingSearch ? _ordersShimmer() : _orders(),
+                              loadingDate
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.orange,
+                                      ),
+                                    )
+                                  : _orders(),
                             ],
                           ),
                         ),

@@ -121,12 +121,11 @@ class _SideDrawerState extends State<SideDrawer> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     OrdersNew(screenNum: index)));
-                          }
-                          else if (index == 1) {
+                          } else if (index == 1) {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     AllOrders(screenNum: index)));
-                           } else if (index == 2) {
+                          } else if (index == 2) {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     MyEarnings(screenNum: index)));

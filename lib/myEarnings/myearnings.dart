@@ -144,7 +144,7 @@ class _MyEarningsState extends State<MyEarnings> {
   Future _openStartDate() async {
     var datePicked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: data.startDate,
       firstDate: DateTime(2019),
       lastDate: DateTime.now(),
     );
@@ -152,12 +152,13 @@ class _MyEarningsState extends State<MyEarnings> {
     setState(() {
       data.startDate = datePicked;
     });
+    getData();
   }
 
   Future _openEndDate() async {
     var datePicked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: data.endDate,
       firstDate: DateTime(2019),
       lastDate: DateTime.now(),
     );
@@ -165,6 +166,7 @@ class _MyEarningsState extends State<MyEarnings> {
     setState(() {
       data.endDate = datePicked;
     });
+    getData();
   }
 
   Widget summery() {
@@ -190,7 +192,7 @@ class _MyEarningsState extends State<MyEarnings> {
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: Colors.green[50],
                 boxShadow: const [
                   BoxShadow(
