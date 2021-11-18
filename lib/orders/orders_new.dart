@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:sahasa_rider_new/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:collection/collection.dart';
@@ -9,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
+import 'package:sahasa_rider_new/models/Push_notification_model.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
@@ -17,6 +21,7 @@ import 'package:sahasa_rider_new/orders/orders.dart';
 import 'dart:async';
 import '../drawer.dart';
 import '../toast.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class OrdersNew extends StatefulWidget {
   final int screenNum;
@@ -50,17 +55,90 @@ class _OrdersNewState extends State<OrdersNew> {
   OrdersMdl newOrdersTmp = OrdersMdl();
   OrdersMdl confirmOrdersTmp = OrdersMdl();
   Timer timer;
-
   int newOrderCount;
+
+  PushNotifications _notificationInfo;
+  FirebaseMessaging _messaging;
 
   @override
   void initState() {
     super.initState();
     getData();
 
+    checkIntitialMessage();
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      PushNotifications notifications = PushNotifications(
+          message.notification.body,
+          message.data["body"],
+          message.data["title"],
+          message.notification.title);
+
+      setState(() {
+        _notificationInfo = notifications;
+      });
+    });
+
+    registerNotification();
+
     // SystemChrome.setPreferredOrientations([
     //   DeviceOrientation.portraitUp,
     // ]);
+  }
+
+  void registerNotification() async {
+    await Firebase.initializeApp();
+    _messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print("granted permission");
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        PushNotifications notifications = PushNotifications(
+            message.notification.body,
+            message.data["body"],
+            message.data["title"],
+            message.notification.title);
+
+        setState(() {
+          _notificationInfo = notifications;
+        });
+        if (notifications != null) {
+          showSimpleNotification(Text(_notificationInfo.title),
+              leading: Container(),
+              subtitle: Text(_notificationInfo.body),
+              background: Colors.orangeAccent,
+              duration: const Duration(seconds: 3));
+        }
+      });
+    } else {
+      print("permission declined by the user");
+    }
+  }
+
+  checkIntitialMessage() async {
+    await Firebase.initializeApp();
+    RemoteMessage initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      PushNotifications notifications = PushNotifications(
+          initialMessage.notification.body,
+          initialMessage.data["body"],
+          initialMessage.data["title"],
+          initialMessage.notification.title);
+
+      setState(() {
+        _notificationInfo = notifications;
+      });
+      checkIntitialMessage();
+    }
   }
 
   @override
