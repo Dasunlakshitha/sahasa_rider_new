@@ -112,10 +112,50 @@ class _OrdersNewState extends State<OrdersNew> {
         });
         if (notifications != null) {
           showSimpleNotification(Text(_notificationInfo.title),
-              leading: Container(),
               subtitle: Text(_notificationInfo.body),
-              background: Colors.orangeAccent,
+              background: Colors.green,
               duration: const Duration(seconds: 3));
+          // showDialog(
+          //     context: context,
+          //     builder: (Context) => AlertDialog(
+          //           backgroundColor:
+          //               message.notification.title == 'New Order(s) Available!'
+          //                   ? Colors.green
+          //                   : Colors.orange,
+          //           content: Align(
+          //             alignment: Alignment.bottomCenter,
+          //             child: Container(
+          //               width: MediaQuery.of(context).size.width,
+          //               height: MediaQuery.of(context).size.height * 0.5,
+          //               child: Column(
+          //                 mainAxisAlignment: MainAxisAlignment.center,
+          //                 crossAxisAlignment: CrossAxisAlignment.center,
+          //                 children: <Widget>[
+          //                   const SizedBox(
+          //                     height: 20,
+          //                   ),
+          //                   Text(
+          //                     message.notification.title,
+          //                     style: const TextStyle(
+          //                         decoration: TextDecoration.none,
+          //                         fontSize: (50),
+          //                         color: Colors.white),
+          //                   ),
+          //                 ],
+          //               ),
+          //               margin: const EdgeInsets.only(
+          //                   bottom: 50, left: 12, right: 12),
+          //               decoration: BoxDecoration(
+          //                 color: message.notification.title ==
+          //                         'New Order(s) Available!'
+          //                     ? Colors.blue
+          //                     : Colors.green,
+          //                 borderRadius: BorderRadius.circular(20),
+          //               ),
+          //             ),
+          //           ),
+          //         ));
+
         }
       });
     } else {
@@ -166,7 +206,7 @@ class _OrdersNewState extends State<OrdersNew> {
 
   getFrequently() async {
     if (!loading) {
-      timer = Timer.periodic(Duration(seconds: 15), (Timer t) {
+      timer = Timer.periodic(const Duration(seconds: 15), (Timer t) {
         getNewItems();
         getConfirmItems();
       });
