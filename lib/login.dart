@@ -68,12 +68,12 @@ class _LogInState extends State<LogIn> {
             buttonLoading = false;
           });
         } else {
-          // await saveStringValue('user', jsonEncode(result.body.user));
-          // if (await readStringValue('token') != '') {
-          //   await SendUser().deleteDeviceToken();
-          // }
-          // await SendUser().saveDeviceToken(result.body.user.accountId);
-          // setState(() {});
+          await saveStringValue('user', jsonEncode(result.body.user));
+          if (await readStringValue('token') != '') {
+            await SendUser().deleteDeviceToken();
+          }
+          await SendUser().saveDeviceToken(result.body.user.accountId);
+          setState(() {});
 
           Navigator.push(
             context,

@@ -18,6 +18,7 @@ import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/oneorder/oneorder.dart';
 import 'package:sahasa_rider_new/orders/orders.dart';
+import 'package:soundpool/soundpool.dart';
 import 'dart:async';
 import '../drawer.dart';
 import '../toast.dart';
@@ -115,6 +116,8 @@ class _OrdersNewState extends State<OrdersNew> {
               subtitle: Text(_notificationInfo.body),
               background: Colors.green,
               duration: const Duration(seconds: 3));
+          _playSound();
+
           // showDialog(
           //     context: context,
           //     builder: (Context) => AlertDialog(
@@ -177,7 +180,6 @@ class _OrdersNewState extends State<OrdersNew> {
       setState(() {
         _notificationInfo = notifications;
       });
-      checkIntitialMessage();
     }
   }
 
@@ -238,6 +240,17 @@ class _OrdersNewState extends State<OrdersNew> {
         }
       }
     }
+  }
+
+  _playSound() async {
+    var pool = Soundpool(streamType: StreamType.notification);
+
+    var soundId =
+        await rootBundle.load("assets/swiftly.mp3").then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    pool.setVolume(soundId: soundId, volume: 200);
+    int streamId = await pool.play(soundId, repeat: 3);
   }
 
   getConfirmItems() async {

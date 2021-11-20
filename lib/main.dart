@@ -41,6 +41,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  FirebaseMessaging _messaging;
   String iniPage = 'welcome';
   bool isDeviceConnected = false;
 
@@ -63,6 +64,7 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
+    registerNotification();
 
     getData();
     // initBackground();
@@ -76,6 +78,10 @@ class _HomepageState extends State<Homepage> {
     } else {
       return Welcome();
     }
+  }
+
+  void registerNotification() async {
+    await Firebase.initializeApp();
   }
 
   // FirebaseMessaging _messaging;

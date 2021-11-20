@@ -31,6 +31,7 @@ class AllOrders extends StatefulWidget {
 class _AllOrdersState extends State<AllOrders> {
   final int screenNum;
   _AllOrdersState(this.screenNum);
+  int ordercount;
 
   bool pressAll = true;
   bool pressDelivered = false;
@@ -102,6 +103,13 @@ class _AllOrdersState extends State<AllOrders> {
               fontSize: ScreenUtil().setSp(20),
             ),
           ),
+          Text(
+            "Orders : 0" + orderCount().toString(),
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white70,
+                fontWeight: FontWeight.bold),
+          )
         ],
       ),
     );
@@ -185,6 +193,9 @@ class _AllOrdersState extends State<AllOrders> {
                             fontWeight: FontWeight.bold),
                       ),
                     )),
+                SizedBox(
+                  width: 10,
+                ),
               ],
             ),
           ],
@@ -333,6 +344,11 @@ class _AllOrdersState extends State<AllOrders> {
     );
   }
 
+  orderCount() {
+    ordercount = orders.length.toInt();
+    return ordercount;
+  }
+
   Widget _orders() {
     return Container(
       margin: const EdgeInsets.only(top: 10),
@@ -353,8 +369,9 @@ class _AllOrdersState extends State<AllOrders> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                OneOrder(id: orders[index].id)));
+                            builder: (context) => OneOrder(
+                                  id: orders[index].id,
+                                )));
                   },
                 ),
               ),
