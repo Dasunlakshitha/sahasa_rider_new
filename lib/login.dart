@@ -73,7 +73,9 @@ class _LogInState extends State<LogIn> {
             await SendUser().deleteDeviceToken();
           }
           await SendUser().saveDeviceToken(result.body.user.accountId);
-          setState(() {});
+          setState(() {
+            buttonLoading = false;
+          });
 
           Navigator.push(
             context,

@@ -6,6 +6,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:sahasa_rider_new/config.dart';
+import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/courier.dart';
 import 'package:sahasa_rider_new/models/earning.dart';
@@ -13,19 +14,19 @@ import 'package:sahasa_rider_new/models/order.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Api {
   // for cookie set
   // final Dio _dio = Dio();
   final Dio _dio = Dio();
+  // ignore: prefer_function_declarations_over_variables
   HttpClient Function(HttpClient client) onHttpClientCreate =
       (HttpClient client) {
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     return client;
   };
-
-  PersistCookieJar persistentCookies;
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -42,12 +43,12 @@ class Api {
   Future<String> setCookie() async {
     try {
       final Directory dir = await _localCoookieDirectory;
+
       final cookiePath = dir.path;
-      // persistentCookies = PersistCookieJar();
+
       var persistentCookies = PersistCookieJar(
           ignoreExpires: true, storage: FileStorage(cookiePath));
 
-      // persistentCookies.deleteAll(); //clearing any existing cookies for a fresh start
       _dio.interceptors.add(CookieManager(
               persistentCookies) //this sets up _dio to persist cookies throughout subsequent requests
           );
@@ -60,6 +61,7 @@ class Api {
           "Connection": "keep-alive",
         },
       );
+      return '';
     } catch (error) {
       errorMessage(defaultErrorMsg);
     }
@@ -102,8 +104,8 @@ class Api {
       await setCookie();
       Response response =
           await _dio.post('$baseUrl/secure/deliver/login', data: {
-        'username': 'Suranga',
-        'password': 'suranga1234'
+        'username': username,
+        'password': password
         // 'subdomain': subDomain
       });
       // return (response.data);
@@ -202,11 +204,11 @@ class Api {
         result.message = 'Unauthorized.';
         return result;
       } else if (e.response.statusCode == 503) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -222,19 +224,19 @@ class Api {
       return AcceptOrder.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -251,19 +253,19 @@ class Api {
       return AcceptOrder.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -272,14 +274,19 @@ class Api {
 
   Future<bool> logout() async {
     try {
-      //await setCookie();
-      // persistentCookies.deleteAll();
+      await setCookie();
+      final Directory dir = await _localCoookieDirectory;
+      final cookiePath = dir.path;
+      var persistentCookies = PersistCookieJar(
+          ignoreExpires: true, storage: FileStorage(cookiePath));
+      persistentCookies.deleteAll();
+
       Response response = await _dio.get('$baseUrl/secure/logout');
       // var result = jsonDecode(response.data);
       if (response.data['done']) {
-        // await SendUser().deleteDeviceToken();
-        // final prefs = await SharedPreferences.getInstance();
-        // prefs.remove('user');
+        await SendUser().deleteDeviceToken();
+        final prefs = await SharedPreferences.getInstance();
+        prefs.remove('user');
         return true;
       } else {
         errorMessage(defaultErrorMsg);

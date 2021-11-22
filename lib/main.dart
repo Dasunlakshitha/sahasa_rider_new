@@ -3,20 +3,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:sahasa_rider_new/api/api.dart';
-import 'package:sahasa_rider_new/firebase_notification.dart';
 import 'package:sahasa_rider_new/login.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sahasa_rider_new/models/Push_notification_model.dart';
-import 'package:sahasa_rider_new/models/completedorders.dart';
 import 'package:sahasa_rider_new/orders/orders_new.dart';
 import 'package:sahasa_rider_new/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'models/user.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
   runApp(const Homepage());
 }

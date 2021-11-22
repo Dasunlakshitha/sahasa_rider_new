@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'localVariables.dart';
 import 'localVariables.dart';
 
 class SendUser {
@@ -26,11 +23,13 @@ class SendUser {
           .collection('tokens')
           .doc(fcmToken);
 
-      await tokens.set({
-        'token': fcmToken,
-        'createdAt': FieldValue.serverTimestamp(), // optional
-        'platform': Platform.operatingSystem // optional
-      });
+      tokens.set(
+        {
+          'token': fcmToken,
+          //'createdAt': FieldValue.serverTimestamp(), // optional
+          'platform': Platform.operatingSystem // optional
+        },
+      );
       await saveStringValue('token', fcmToken);
     }
   }

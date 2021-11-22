@@ -7,17 +7,17 @@ class Earning {
 
   Earning.fromJson(Map<String, dynamic> json) {
     done = json['done'];
-    body = json['body'] != null ? new Body.fromJson(json['body']) : null;
+    body = json['body'] != null ? Body.fromJson(json['body']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['done'] = this.done;
-    if (this.body != null) {
-      data['body'] = this.body.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['done'] = done;
+    if (body != null) {
+      data['body'] = body.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -63,7 +63,7 @@ class Body {
     if (json['items'] != null) {
       items = new List<Items>();
       json['items'].forEach((v) {
-        items.add(new Items.fromJson(v));
+        items.add(Items.fromJson(v));
       });
     }
     totalOnlineBonus = json['totalOnlineBonus'];

@@ -28,6 +28,7 @@ class _SideDrawerState extends State<SideDrawer> {
       loading = true;
     });
     bool log = await Api().logout();
+
     if (log) {
       Navigator.pushAndRemoveUntil(
         context,

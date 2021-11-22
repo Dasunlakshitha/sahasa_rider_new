@@ -51,12 +51,14 @@ dependencies:
   cookie_jar: ^3.0.1
   dio_cookie_manager: ^2.0.0
   firebase_messaging: ^11.1.0
-  cloud_firestore: ^2.5.4
+  cloud_firestore: ^3.1.0
   soundpool: ^2.2.0
   firebase_core: ^1.8.0
   collection: ^1.15.0    
   firebase_analytics: "^7.0.1"
   overlay_support: ^1.2.1
+  firebase_auth: ^3.2.0
+  firebase_auth_web: ^3.2.0
   #date_range_picker: ^1.0.7
   #flutter_holo_date_picker: ^1.0.1+2
 
@@ -70,7 +72,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-
+  
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/favicon.png"
 
 
 # For information on the generic Dart part of this file, see the

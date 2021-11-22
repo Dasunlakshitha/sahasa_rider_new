@@ -30,6 +30,13 @@
             {
               "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "590283755660-npsbaor5ofai4vg7c121a64vt4q9o1d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sahasa.rider"
+              }
             }
           ]
         }
@@ -59,6 +66,13 @@
             {
               "client_id": "590283755660-cmi8cp79sgdupleo3lnd7ehvgtivosae.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "590283755660-npsbaor5ofai4vg7c121a64vt4q9o1d4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sahasa.rider"
+              }
             }
           ]
         }
