@@ -1,14 +1,10 @@
 // ignore_for_file: prefer_const_constructors, no_logic_in_create_state
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/drawer.dart';
-
 import 'package:sahasa_rider_new/models/completeOrders.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/oneorder/oneorder.dart';
@@ -92,19 +88,21 @@ class _AllOrdersState extends State<AllOrders> {
     return AppBar(
       backgroundColor: Colors.black12,
       title: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             "Completed Orders",
             style: TextStyle(
-              fontSize: ScreenUtil().setSp(20),
+              fontSize: ScreenUtil().setSp(19),
             ),
           ),
+          SizedBox(
+            width: 10,
+          ),
+          Spacer(),
           Text(
             "Orders : 0" + orderCount().toString(),
             style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 color: Colors.white70,
                 fontWeight: FontWeight.bold),
           )

@@ -25,17 +25,14 @@ class Welcome extends StatelessWidget {
             return Container(
               color: Colors.white10,
               child: Center(
-                child: Image(
-                  image: const AssetImage('favicon.png'),
-                  width: MediaQuery.of(context).size.width * 0.2,
-                ),
+                child: Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: Image.asset("assets/favicon.png")),
               ),
             );
           },
         );
       },
-      // ),
     );
-    // checkConnection(context);
   }
 }

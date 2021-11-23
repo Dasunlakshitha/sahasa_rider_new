@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:connectivity/connectivity.dart';
-//import 'package:flutter_screenutil/screenutil.dart';
 
 class NoConnection extends StatefulWidget {
   const NoConnection({Key key}) : super(key: key);
@@ -12,8 +10,6 @@ class NoConnection extends StatefulWidget {
 class _NoConnectionState extends State<NoConnection> {
   @override
   Widget build(BuildContext context) {
-    //ScreenUtil.init(context, width: 1200, height: 1920, allowFontScaling: true);
-
     return Scaffold(
       body: Container(
         color: Colors.white,

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_label
+
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -116,6 +118,7 @@ class _OrdersNewState extends State<OrdersNew> {
           showDialog(
             context: context,
             builder: (Context) => AlertDialog(
+              backgroundColor: Colors.transparent,
               content: Align(
                 alignment: Alignment.center,
                 child: Container(
@@ -355,7 +358,9 @@ class _OrdersNewState extends State<OrdersNew> {
             body: Container(
               child: loading
                   ? const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
                     )
                   : CustomScrollView(
                       slivers: <Widget>[
