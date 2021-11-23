@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-
-import 'connection_check/connection_check.dart';
+import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
 
 class Welcome extends StatelessWidget {
   bool isDeviceConnected = false;

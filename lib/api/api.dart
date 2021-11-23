@@ -282,7 +282,7 @@ class Api {
       persistentCookies.deleteAll();
 
       Response response = await _dio.get('$baseUrl/secure/logout');
-      // var result = jsonDecode(response.data);
+
       if (response.data['done']) {
         await SendUser().deleteDeviceToken();
         final prefs = await SharedPreferences.getInstance();

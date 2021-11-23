@@ -1,30 +1,24 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
-import 'package:sahasa_rider_new/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/calculateDistance.dart';
 import 'package:sahasa_rider_new/helpers/localvariables.dart';
 import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/order.dart';
+import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:background_geolocation_plugin/background_geolocation_plugin.dart';
 import 'package:background_geolocation_plugin/location_item.dart';
-
 import 'package:flutter_offline/flutter_offline.dart';
-
 import '../toast.dart';
 
 class OneOrder extends StatefulWidget {
   final String id;
   final String orderNo;
-  OneOrder({Key key, @required this.id, @required this.orderNo})
+  const OneOrder({Key key, @required this.id, @required this.orderNo})
       : super(key: key);
 
   @override
@@ -59,7 +53,7 @@ class _OneOrderState extends State<OneOrder> {
   calTotalDistance() async {
     List<LocationItem> items =
         await BackgroundGeolocationPlugin.getAllLocations();
-    if (items != null && items.length > 0) {
+    if (items != null && items.isNotEmpty) {
       for (var i = 0; i < items.length - 1; i++) {
         totalDistance += calculateDistance(items[i].latitude,
             items[i].longitude, items[i + 1].latitude, items[i + 1].longitude);

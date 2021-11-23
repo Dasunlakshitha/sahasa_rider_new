@@ -4,25 +4,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:sahasa_rider_new/connection_check/connection_check.dart';
+import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
-import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
 import 'package:sahasa_rider_new/models/Push_notification_model.dart';
 import 'package:sahasa_rider_new/models/accept.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/oneorder/oneorder.dart';
-import 'package:sahasa_rider_new/orders/orders.dart';
+import 'package:sahasa_rider_new/toast.dart';
 import 'package:soundpool/soundpool.dart';
-import 'dart:async';
-import '../drawer.dart';
-import '../toast.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:sahasa_rider_new/drawer.dart';
 
 class OrdersNew extends StatefulWidget {
   final int screenNum;
@@ -65,6 +61,7 @@ class _OrdersNewState extends State<OrdersNew> {
   void initState() {
     super.initState();
     getData();
+    registerNotification();
 
     checkIntitialMessage();
 
@@ -74,17 +71,15 @@ class _OrdersNewState extends State<OrdersNew> {
           message.data["body"],
           message.data["title"],
           message.notification.title);
+      showSimpleNotification(Text(_notificationInfo.title),
+          subtitle: Text(_notificationInfo.body),
+          background: Colors.green,
+          duration: const Duration(seconds: 3));
 
       setState(() {
         _notificationInfo = notifications;
       });
     });
-
-    registerNotification();
-
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitUp,
-    // ]);
   }
 
   void registerNotification() async {
@@ -118,47 +113,62 @@ class _OrdersNewState extends State<OrdersNew> {
               duration: const Duration(seconds: 3));
           _playSound();
 
-          // showDialog(
-          //     context: context,
-          //     builder: (Context) => AlertDialog(
-          //           backgroundColor:
-          //               message.notification.title == 'New Order(s) Available!'
-          //                   ? Colors.green
-          //                   : Colors.orange,
-          //           content: Align(
-          //             alignment: Alignment.bottomCenter,
-          //             child: Container(
-          //               width: MediaQuery.of(context).size.width,
-          //               height: MediaQuery.of(context).size.height * 0.5,
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.center,
-          //                 crossAxisAlignment: CrossAxisAlignment.center,
-          //                 children: <Widget>[
-          //                   const SizedBox(
-          //                     height: 20,
-          //                   ),
-          //                   Text(
-          //                     message.notification.title,
-          //                     style: const TextStyle(
-          //                         decoration: TextDecoration.none,
-          //                         fontSize: (50),
-          //                         color: Colors.white),
-          //                   ),
-          //                 ],
-          //               ),
-          //               margin: const EdgeInsets.only(
-          //                   bottom: 50, left: 12, right: 12),
-          //               decoration: BoxDecoration(
-          //                 color: message.notification.title ==
-          //                         'New Order(s) Available!'
-          //                     ? Colors.blue
-          //                     : Colors.green,
-          //                 borderRadius: BorderRadius.circular(20),
-          //               ),
-          //             ),
-          //           ),
-          //         ));
-
+          showDialog(
+            context: context,
+            builder: (Context) => AlertDialog(
+              content: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Text(
+                          message.notification.title,
+                          style: const TextStyle(
+                              decoration: TextDecoration.none,
+                              fontSize: (20),
+                              color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color:
+                        message.notification.title == 'New Order(s) Available!'
+                            ? Colors.blue
+                            : Colors.green,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: const Text(
+                    'Ok',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () {
+                    // _stopSound();
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.of(context, rootNavigator: true).pop();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OrdersNew(
+                                  screenNum: 0,
+                                )));
+                  },
+                ),
+              ],
+            ),
+          );
         }
       });
     } else {
@@ -176,6 +186,10 @@ class _OrdersNewState extends State<OrdersNew> {
           initialMessage.data["body"],
           initialMessage.data["title"],
           initialMessage.notification.title);
+      showSimpleNotification(Text(_notificationInfo.title),
+          subtitle: Text(_notificationInfo.body),
+          background: Colors.green,
+          duration: const Duration(seconds: 3));
 
       setState(() {
         _notificationInfo = notifications;

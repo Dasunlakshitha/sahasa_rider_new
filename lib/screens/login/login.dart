@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/models/login.dart';
 import 'package:sahasa_rider_new/models/user.dart';
+import 'package:sahasa_rider_new/screens/orders/orders_new.dart';
 import 'package:sahasa_rider_new/toast.dart';
-
-import 'helpers/localvariables.dart';
-import 'helpers/sendfirebase.dart';
-import 'orders/orders.dart';
-import 'orders/orders_new.dart';
+import '../../helpers/localvariables.dart';
+import '../../helpers/sendfirebase.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key key}) : super(key: key);

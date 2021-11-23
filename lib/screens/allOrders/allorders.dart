@@ -5,19 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-//import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
-//import 'package:date_range_picker/date_range_picker.dart' as drpicker;
-//import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
-import 'package:sahasa_rider_new/connection_check/connection_check.dart';
+import 'package:sahasa_rider_new/drawer.dart';
+
 import 'package:sahasa_rider_new/models/completeOrders.dart';
 import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/oneorder/oneorder.dart';
+import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
+import 'package:sahasa_rider_new/toast.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_offline/flutter_offline.dart';
-import '../drawer.dart';
-import '../toast.dart';
 
 class AllOrders extends StatefulWidget {
   final int screenNum;
@@ -509,8 +507,6 @@ class _AllOrdersState extends State<AllOrders> {
         baseColor: Colors.white,
         highlightColor: Colors.grey[200]);
   }
-
-  // //
 
   setConnect(connected) {
     Future.delayed(Duration.zero, () async {

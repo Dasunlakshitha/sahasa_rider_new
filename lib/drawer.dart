@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sahasa_rider_new/login.dart';
+import 'package:sahasa_rider_new/screens/allOrders/allorders.dart';
+import 'package:sahasa_rider_new/screens/login/login.dart';
 import 'package:sahasa_rider_new/api/api.dart';
-import 'package:sahasa_rider_new/orders/orders.dart';
-import 'package:sahasa_rider_new/orders/orders_new.dart';
-
-import 'allOrders/allorders.dart';
-import 'myEarnings/myearnings.dart';
-
-//import 'package:new_sahasa_rider/src/screens/trackPath/trackPath.dart';
+import 'package:sahasa_rider_new/screens/myEarnings/myearnings.dart';
+import 'package:sahasa_rider_new/screens/orders/orders_new.dart';
 
 class SideDrawer extends StatefulWidget {
   final int screenNo;
