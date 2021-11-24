@@ -155,17 +155,33 @@ class _AllOrdersState extends State<AllOrders> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.blue),
                     width: MediaQuery.of(context).size.width * 0.4,
                     child: TextButton(
                       onPressed: () {
                         _openStartDate();
                       },
-                      child: Text(
-                        getStartDate(),
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold),
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              getStartDate(),
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.white,
+                              size: 15,
+                            )
+                          ],
+                        ),
                       ),
                     )),
                 Text(
@@ -176,17 +192,33 @@ class _AllOrdersState extends State<AllOrders> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.blue),
                     width: MediaQuery.of(context).size.width * 0.4,
                     child: TextButton(
                       onPressed: () {
                         _openEndDate();
                       },
-                      child: Text(
-                        getLastDate(),
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold),
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              getLastDate(),
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Spacer(),
+                            Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.white,
+                              size: 15,
+                            ),
+                          ],
+                        ),
                       ),
                     )),
                 SizedBox(

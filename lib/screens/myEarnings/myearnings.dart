@@ -76,19 +76,36 @@ class _MyEarningsState extends State<MyEarnings> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: TextButton(
-                      onPressed: () {
-                        _openStartDate();
-                      },
-                      child: Text(
-                        getStartDate(),
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold),
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(5)),
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child: TextButton(
+                    onPressed: () {
+                      _openStartDate();
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            getStartDate(),
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.calendar_today_outlined,
+                            color: Colors.white,
+                            size: 15,
+                          )
+                        ],
                       ),
-                    )),
+                    ),
+                  ),
+                ),
                 Text(
                   ' - ',
                   style: TextStyle(
@@ -97,19 +114,36 @@ class _MyEarningsState extends State<MyEarnings> {
                       fontWeight: FontWeight.bold),
                 ),
                 Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: TextButton(
-                      onPressed: () {
-                        _openEndDate();
-                      },
-                      child: Text(
-                        getLastDate(),
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white70,
-                            fontWeight: FontWeight.bold),
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(5)),
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child: TextButton(
+                    onPressed: () {
+                      _openEndDate();
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            getLastDate(),
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.calendar_today_outlined,
+                            color: Colors.white,
+                            size: 15,
+                          )
+                        ],
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -186,7 +220,7 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.green[50],
+                color: Colors.greenAccent[200],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
@@ -370,7 +404,7 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.blue[50],
+                color: Colors.amber[200],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
@@ -641,7 +675,7 @@ class _MyEarningsState extends State<MyEarnings> {
                     Jiffy(earning.body.items[i].orderDate).format('MMM do yy'),
                     style: TextStyle(
                         fontSize: ScreenUtil().setSp(18),
-                        color: Colors.white70,
+                        color: Colors.orange,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -1160,6 +1194,9 @@ class _MyEarningsState extends State<MyEarnings> {
                               height: 20,
                             ),
                             Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white24,
+                                  borderRadius: BorderRadius.circular(5)),
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               padding: const EdgeInsets.all(10),
@@ -1171,7 +1208,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                     style: TextStyle(
                                         fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.grey),
+                                        color: Colors.amberAccent),
                                   ),
                                   const SizedBox(
                                     height: 5,
