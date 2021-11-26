@@ -1,3 +1,5 @@
+// ignore_for_file: missing_return
+
 import 'dart:io';
 import 'dart:async';
 import 'package:dio/dio.dart';
@@ -317,19 +319,19 @@ class Api {
       return Courier.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        Courier result = new Courier();
+        Courier result = Courier();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        Courier result = new Courier();
+        Courier result = Courier();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        Courier result = new Courier();
+        Courier result = Courier();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        Courier result = new Courier();
+        Courier result = Courier();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -346,19 +348,19 @@ class Api {
       return AcceptOrder.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -428,19 +430,19 @@ class Api {
       return AcceptOrder.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        AcceptOrder result = new AcceptOrder();
+        AcceptOrder result = AcceptOrder();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -455,19 +457,19 @@ class Api {
       return OrdersMdl.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -482,19 +484,19 @@ class Api {
       return Earning.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        Earning result = new Earning();
+        Earning result = Earning();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        Earning result = new Earning();
+        Earning result = Earning();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        Earning result = new Earning();
+        Earning result = Earning();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        Earning result = new Earning();
+        Earning result = Earning();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -509,19 +511,19 @@ class Api {
       return OrdersMdl.fromJson(response.data);
     } catch (e) {
       if (e.response.statusCode == 400) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Bad Request.';
         return result;
       } else if (e.response.statusCode == 401) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Unauthorize.';
         return result;
       } else if (e.response.statusCode == 503) {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = 'Service Unavailable.';
         return result;
       } else {
-        OrdersMdl result = new OrdersMdl();
+        OrdersMdl result = OrdersMdl();
         result.message = defaultErrorMsg;
         return result;
       }
@@ -550,6 +552,32 @@ class Api {
         return result;
       } else {
         AcceptOrder result = AcceptOrder();
+        result.message = defaultErrorMsg;
+        return result;
+      }
+    }
+  }
+
+  Future<Users> getRiderDetails(BuildContext context) async {
+    try {
+      Response response =
+          await _dio.get('$baseUrl/api/v1/delivery-personnel/:id ');
+      return Users.fromJson(response.data);
+    } catch (e) {
+      if (e.response.statusCode == 400) {
+        Users result = Users();
+        result.message = 'Bad Request.';
+        return result;
+      } else if (e.response.statusCode == 401) {
+        Users result = Users();
+        result.message = 'Unauthorize.';
+        return result;
+      } else if (e.response.statusCode == 503) {
+        Users result = Users();
+        result.message = 'Service Unavailable.';
+        return result;
+      } else {
+        Users result = Users();
         result.message = defaultErrorMsg;
         return result;
       }

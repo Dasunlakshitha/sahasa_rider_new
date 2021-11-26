@@ -179,6 +179,67 @@ class _OrdersNewState extends State<OrdersNew> {
     }
   }
 
+  // Future<void> _comingSoonDialog() async {
+
+  //   return showDialog(
+  //       context: context,
+  //       builder: (Context) => AlertDialog(
+  //             backgroundColor: Colors.transparent,
+  //             content: Align(
+  //               alignment: Alignment.center,
+  //               child: Container(
+  //                 width: MediaQuery.of(context).size.width,
+  //                 height: MediaQuery.of(context).size.height * 0.3,
+  //                 child: Column(
+  //                   mainAxisAlignment: MainAxisAlignment.center,
+  //                   crossAxisAlignment: CrossAxisAlignment.center,
+  //                   children: const <Widget>[
+  //                     SizedBox(
+  //                       height: 20,
+  //                     ),
+  //                     Center(
+  //                       child: Text(
+  //                         "",
+  //                         //message.notification.title,
+  //                         style: TextStyle(
+  //                             decoration: TextDecoration.none,
+  //                             fontSize: (20),
+  //                             color: Colors.white),
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //                 decoration: BoxDecoration(
+  //                   color: Colors.amber,
+  //                   // message.notification.title == 'New Order(s) Available!'
+  //                   //     ? Colors.blue
+  //                   //     : Colors.green,
+  //                   borderRadius: BorderRadius.circular(20),
+  //                 ),
+  //               ),
+  //             ),
+  //             actions: <Widget>[
+  //               FlatButton(
+  //                 child: const Text(
+  //                   'Ok',
+  //                   style: TextStyle(color: Colors.white, fontSize: 20),
+  //                 ),
+  //                 onPressed: () {
+  //                   // _stopSound();
+  //                   Navigator.of(context, rootNavigator: true).pop();
+  //                   Navigator.of(context, rootNavigator: true).pop();
+  //                   Navigator.push(
+  //                       context,
+  //                       MaterialPageRoute(
+  //                           builder: (context) => OrdersNew(
+  //                                 screenNum: 0,
+  //                               )));
+  //                 },
+  //               ),
+  //             ],
+  //           ));
+  // }
+
   checkIntitialMessage() async {
     await Firebase.initializeApp();
     RemoteMessage initialMessage =
@@ -565,7 +626,7 @@ class _OrdersNewState extends State<OrdersNew> {
           child: Text(
             'New Orders(${newOrders.body.length})',
             style: const TextStyle(
-                fontSize: (18),
+                fontSize: (16),
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -668,7 +729,7 @@ class _OrdersNewState extends State<OrdersNew> {
             child: Text(
               'Confirmed Order(${confirmOrders.body.length})',
               style: const TextStyle(
-                  fontSize: (18),
+                  fontSize: (16),
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),

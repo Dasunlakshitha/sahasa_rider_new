@@ -21,7 +21,6 @@ class MyEarnings extends StatefulWidget {
 
 class _MyEarningsState extends State<MyEarnings> {
   final int screenNum;
-
   _MyEarningsState(this.screenNum);
   Earnings data = Earnings();
   Earning earning = Earning();
@@ -461,7 +460,7 @@ class _MyEarningsState extends State<MyEarnings> {
                       ),
                     ],
                   ),
-                  Divider(),
+                  const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -470,26 +469,21 @@ class _MyEarningsState extends State<MyEarnings> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Container(
-                              child: Text(
-                                'Total Bonus',
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
-                                    fontWeight: FontWeight.bold),
-                              ),
+                            Text(
+                              'Total Bonus',
+                              style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(15),
+                                  fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 5,
                             ),
-                            Container(
-                              // alignment: Alignment(1, 0),
-                              child: Text(
-                                'Rs. ${earning.body.totalOnlineBonus.toStringAsFixed(2)}',
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
-                              ),
+                            Text(
+                              'Rs. ${earning.body.totalOnlineBonus.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(18),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue),
                             ),
                           ],
                         ),
@@ -499,26 +493,21 @@ class _MyEarningsState extends State<MyEarnings> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Container(
-                              child: Text(
-                                'Total Earnings',
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
-                                    fontWeight: FontWeight.bold),
-                              ),
+                            Text(
+                              'Total Earnings',
+                              style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(15),
+                                  fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 5,
                             ),
-                            Container(
-                              // alignment: Alignment(1, 0),
-                              child: Text(
-                                'Rs. ${(earning.body.totalOnlineDelivery + earning.body.totalOnlineBonus).toStringAsFixed(2)}',
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
-                              ),
+                            Text(
+                              'Rs. ${(earning.body.totalOnlineDelivery + earning.body.totalOnlineBonus).toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  fontSize: ScreenUtil().setSp(18),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue),
                             ),
                           ],
                         ),
@@ -537,28 +526,23 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    'Cash in Hand',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  'Cash in Hand',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Container(
-                  // alignment: Alignment(1, 0),
-                  child: Text(
-                    'Rs. ${(earning.body.orderCash - earning.body.onlineCash).toStringAsFixed(2)}',
-                    // "001",
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
+                Text(
+                  'Rs. ${(earning.body.orderCash - earning.body.onlineCash).toStringAsFixed(2)}',
+                  // "001",
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
                 ),
               ],
             ),
@@ -569,27 +553,22 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    'Delivery Charge',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  'Delivery Charge',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Container(
-                  // alignment: Alignment(1, 0),
-                  child: Text(
-                    '-Rs. ${this.earning.body.deliveryCash.toStringAsFixed(2)}',
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
+                Text(
+                  '-Rs. ${this.earning.body.deliveryCash.toStringAsFixed(2)}',
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
                 ),
               ],
             ),
@@ -600,45 +579,38 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    'Total Bonus',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  'Total Bonus',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Container(
-                  // alignment: Alignment(1, 0),
-                  child: Text(
-                    '-Rs. ${(earning.body.totalOnlineBonus + earning.body.totalCashBonus).toStringAsFixed(2)}',
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
+                Text(
+                  '-Rs. ${(earning.body.totalOnlineBonus + earning.body.totalCashBonus).toStringAsFixed(2)}',
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 3),
+          const SizedBox(height: 3),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  child: Text(
-                    'Cash Balance',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: ScreenUtil().setSp(16),
-                        fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  'Cash Balance',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
@@ -1224,6 +1196,9 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  SizedBox(
+                                    height: 15,
+                                  ),
                                   Text(
                                     'Details',
                                     style: TextStyle(

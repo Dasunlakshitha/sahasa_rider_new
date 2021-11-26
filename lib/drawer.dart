@@ -5,6 +5,9 @@ import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/screens/myEarnings/myearnings.dart';
 import 'package:sahasa_rider_new/screens/orders/orders_new.dart';
 
+import 'helpers/user_authentication_service.dart';
+import 'models/user.dart';
+
 class SideDrawer extends StatefulWidget {
   final int screenNo;
   const SideDrawer({Key key, @required this.screenNo}) : super(key: key);
@@ -16,8 +19,15 @@ class SideDrawer extends StatefulWidget {
 class _SideDrawerState extends State<SideDrawer> {
   int screenNo;
   _SideDrawerState(this.screenNo);
-
+  User getRider;
+  bool riderDataLoading = false;
   bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getRideDetails();
+  }
 
   logout() async {
     setState(() {
@@ -26,6 +36,7 @@ class _SideDrawerState extends State<SideDrawer> {
     bool log = await Api().logout();
 
     if (log) {
+      removeUserAuthPref(key: "ssUserAuth");
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const LogIn()),
@@ -35,6 +46,19 @@ class _SideDrawerState extends State<SideDrawer> {
     setState(() {
       loading = false;
     });
+  }
+
+  getRideDetails() async {
+    getRider = User.fromJson(await getUserAuthPref(key: "ssUserAuth"));
+    if (getRider.id != null) {
+      setState(() {
+        riderDataLoading = true;
+      });
+    } else {
+      setState(() {
+        riderDataLoading = false;
+      });
+    }
   }
 
   Widget _title(context) {
@@ -134,6 +158,53 @@ class _SideDrawerState extends State<SideDrawer> {
                       ),
                     );
                   }),
+              const SizedBox(
+                height: 100,
+              ),
+              Expanded(
+                  child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.black12,
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 5),
+                    const Text("Rider Details",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 15),
+                    !riderDataLoading
+                        ? Container()
+                        : Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("  Name         :  ${getRider.name}",
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  // const SizedBox(height: 5),
+                                  //Text("Vehicle Type : ${getRider.vehicleType}"),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                      "  Vehicle Nu :  ${getRider.vehicleNumber}",
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                      "  Contact      :  +94 ${getRider.contactNo}",
+                                      style:
+                                          const TextStyle(color: Colors.white)),
+                                  const SizedBox(height: 5),
+                                ],
+                              )
+                            ],
+                          )
+                  ],
+                ),
+              )),
               Expanded(
                   child: Align(
                 alignment: Alignment.bottomLeft,

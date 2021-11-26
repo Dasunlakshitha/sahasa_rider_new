@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:sahasa_rider_new/api/api.dart';
+import 'package:sahasa_rider_new/helpers/user_authentication_service.dart';
 import 'package:sahasa_rider_new/models/login.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/screens/orders/orders_new.dart';
@@ -71,6 +72,7 @@ class _LogInState extends State<LogIn> {
             await SendUser().deleteDeviceToken();
           }
           await SendUser().saveDeviceToken(result.body.user.accountId);
+          updateUserAuthPref(key: "ssUserAuth", data: result.body.user);
           setState(() {
             buttonLoading = false;
           });
