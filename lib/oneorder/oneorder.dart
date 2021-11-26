@@ -327,7 +327,7 @@ class _OneOrderState extends State<OneOrder> {
                     child: FlatButton(
                       color: Colors.blue,
                       child: Row(
-                        children: <Widget>[
+                        children: const <Widget>[
                           Icon(
                             Icons.call,
                             color: Colors.white,
@@ -346,7 +346,7 @@ class _OneOrderState extends State<OneOrder> {
                         ],
                       ),
                       onPressed: () {
-                        _getCall(this.order.body.contactNo);
+                        _getCall(order.body.contactNo);
                       },
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.blue, width: 2),
@@ -388,12 +388,6 @@ class _OneOrderState extends State<OneOrder> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  // Image(
-                  //   width: MediaQuery.of(context).size.width * 0.2,
-                  //   image: NetworkImage(
-                  //       this.order.body.items[i]
-                  //       'https://s3.us-west-2.amazonaws.com/cdn.lankanstore/item_images/156552dd-c4d1-4494-ac69-9bfc3eb25d1a/43eeea14-4862-40a6-81a5-ce1e61722b2a.jpeg'),
-                  // ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.35,
                     child: Column(
@@ -441,11 +435,9 @@ class _OneOrderState extends State<OneOrder> {
 
   Widget _partners(partner) {
     var orderDateNo = Jiffy(order.body.deliveryTime).subtract(minutes: 25);
-    // var orderDate = Jiffy(orderDateNo).format('yyyy/MM/dd');
     var deliveryTime = Jiffy(orderDateNo).format('h:mm a');
     var deliveryDate = Jiffy(orderDateNo).format('yyyy/MM/dd');
     var today = Jiffy(DateTime.now()).format('yyyy/MM/dd');
-    // var deliveryTime = Jiffy(this.order.body.deliveryTime).format('h:mm a');
     return Container(
       child: Card(
         color: Colors.transparent,
@@ -546,7 +538,7 @@ class _OneOrderState extends State<OneOrder> {
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        partner.contactNo != null ? partner.contactNo : '',
+                        partner.contactNo ?? '',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: (15),
@@ -562,7 +554,7 @@ class _OneOrderState extends State<OneOrder> {
                     child: FlatButton(
                       color: Colors.blue,
                       child: Row(
-                        children: <Widget>[
+                        children: const <Widget>[
                           Icon(
                             Icons.call,
                             color: Colors.white,
@@ -607,10 +599,8 @@ class _OneOrderState extends State<OneOrder> {
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 0, right: 0),
       child: Column(
         children: <Widget>[
-          for (var i = 0; i < this.order.body.items.length; i++)
-            _partners(this.order.body.items[i])
-          // for (var i = 0; i < this.order.body.items.length; i++)
-          //   _item(this.order.body.items[i])
+          for (var i = 0; i < order.body.items.length; i++)
+            _partners(order.body.items[i])
         ],
       ),
     );
@@ -626,20 +616,19 @@ class _OneOrderState extends State<OneOrder> {
 
   _update(status) async {
     if (status == 'Returned' || status == 'Delivered') {
-      await SendUser().deleteDeliveryToken(this.id);
+      await SendUser().deleteDeliveryToken(id);
     }
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Container(
           padding: EdgeInsets.all(15),
-          // color: Colors.green,
           alignment: Alignment.center,
           child: status == 'Returned'
               ? Column(
                   children: <Widget>[
                     Row(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text(
                           'This will return the Order',
                           textAlign: TextAlign.center,
@@ -699,7 +688,7 @@ class _OneOrderState extends State<OneOrder> {
                     TextFormField(
                       onChanged: (value) {
                         setState(() {
-                          this.returnNote = value;
+                          returnNote = value;
                         });
                       },
                       minLines: 3,
@@ -789,7 +778,6 @@ class _OneOrderState extends State<OneOrder> {
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
                 'Subtotal',
@@ -814,7 +802,6 @@ class _OneOrderState extends State<OneOrder> {
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
                 'Delivery Fee',
@@ -840,7 +827,6 @@ class _OneOrderState extends State<OneOrder> {
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
                   'Convenience Fee',
@@ -866,7 +852,6 @@ class _OneOrderState extends State<OneOrder> {
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
                 'Grand total',
@@ -891,7 +876,6 @@ class _OneOrderState extends State<OneOrder> {
           width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
                 'Paid Amount',
@@ -939,7 +923,6 @@ class _OneOrderState extends State<OneOrder> {
                     )
                   : Scaffold(
                       backgroundColor: Color(0xff2c3539),
-
                       appBar: _appBar(),
                       body: LoadingOverlay(
                         progressIndicator: CircularProgressIndicator(
@@ -983,14 +966,12 @@ class _OneOrderState extends State<OneOrder> {
                         ),
                       ),
                       persistentFooterButtons: <Widget>[
-                        // Divider(),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.only(top: 10),
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               Text(
                                 'Remaining Amount',
@@ -1033,7 +1014,6 @@ class _OneOrderState extends State<OneOrder> {
                               ),
                             ],
                           ),
-                        // Divider(),
                         const SizedBox(
                           height: 20,
                         ),
@@ -1107,8 +1087,6 @@ class _OneOrderState extends State<OneOrder> {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                       onPressed: () {
-                                        // if (order.body.orderStatus !=
-                                        //     'Being Prepared') {
                                         if (order.body.orderStatus == 'Ready' ||
                                             order.body.orderStatus ==
                                                 'Being Prepared') {
@@ -1122,7 +1100,6 @@ class _OneOrderState extends State<OneOrder> {
                                           });
                                         }
                                         _update(buttonStatus);
-                                        // }
                                       },
                                       shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -1140,15 +1117,11 @@ class _OneOrderState extends State<OneOrder> {
                           ],
                         ),
                       ],
-                      // ),
-                      //   ),
-                      // ],
                     ),
             );
           },
         );
       },
-      // ),
     );
   }
 }

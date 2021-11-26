@@ -198,7 +198,6 @@ class _MyEarningsState extends State<MyEarnings> {
   Widget summery() {
     return Container(
       color: Colors.transparent,
-      //margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -208,22 +207,17 @@ class _MyEarningsState extends State<MyEarnings> {
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(18),
                 fontWeight: FontWeight.bold,
-                //color: Color(0XFF3073e3)
                 color: Colors.white),
           ),
-          // SizedBox(
-          //   height: 5,
-          // ),
           Card(
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.greenAccent[200],
+                color: Colors.greenAccent[100],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
-                    //blurRadius: 20.0,
                   ),
                 ],
               ),
@@ -392,26 +386,21 @@ class _MyEarningsState extends State<MyEarnings> {
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(18),
                 fontWeight: FontWeight.bold,
-                // color: Color(0XFF3073e3)
                 color: Colors.white),
           ),
-          // SizedBox(
-          //   height: 5,
-          // ),
           Card(
             color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.amber[200],
+                color: Colors.orange[100],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
-                    //blurRadius: 20.0,
                   ),
                 ],
               ),
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -664,22 +653,17 @@ class _MyEarningsState extends State<MyEarnings> {
                 style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.bold,
-                    //color: Color(0XFF3073e3)
                     color: Colors.white),
               ),
-              // SizedBox(
-              //   height: 5,
-              // ),
               Card(
                 color: Colors.transparent,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: Colors.green[50],
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.black,
-                        //blurRadius: 20.0,
                       ),
                     ],
                   ),
@@ -850,12 +834,8 @@ class _MyEarningsState extends State<MyEarnings> {
                 style: TextStyle(
                     fontSize: ScreenUtil().setSp(18),
                     fontWeight: FontWeight.bold,
-                    // color: Color(0XFF3073e3)
                     color: Colors.white),
               ),
-              // SizedBox(
-              //   height: 5,
-              // ),
               Card(
                 color: Colors.transparent,
                 child: Container(

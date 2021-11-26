@@ -159,21 +159,24 @@ class _SideDrawerState extends State<SideDrawer> {
                     );
                   }),
               const SizedBox(
-                height: 100,
+                height: 50,
               ),
               Expanded(
                   child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.black12,
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
                     const Text("Rider Details",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold)),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15)),
                     const SizedBox(height: 15),
                     !riderDataLoading
                         ? Container()
@@ -183,20 +186,20 @@ class _SideDrawerState extends State<SideDrawer> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text("  Name         :  ${getRider.name}",
-                                      style:
-                                          const TextStyle(color: Colors.white)),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 15)),
                                   // const SizedBox(height: 5),
                                   //Text("Vehicle Type : ${getRider.vehicleType}"),
                                   const SizedBox(height: 8),
                                   Text(
                                       "  Vehicle Nu :  ${getRider.vehicleNumber}",
-                                      style:
-                                          const TextStyle(color: Colors.white)),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 15)),
                                   const SizedBox(height: 8),
                                   Text(
                                       "  Contact      :  +94 ${getRider.contactNo}",
-                                      style:
-                                          const TextStyle(color: Colors.white)),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 15)),
                                   const SizedBox(height: 5),
                                 ],
                               )
