@@ -397,7 +397,17 @@ class _OrdersNewState extends State<OrdersNew> {
                         ),
                       ),
                       loading
-                          ? Container()
+                          ? Switch(
+                              value: true,
+                              onChanged: (value) {
+                                setState(() {
+                                  changeAvailable(value);
+                                });
+                              },
+                              activeColor: Colors.green,
+                              activeTrackColor: Colors.green[100],
+                              inactiveTrackColor: Colors.red,
+                            )
                           : Switch(
                               value: data.body.user.isAvailable,
                               onChanged: (value) {
@@ -409,7 +419,6 @@ class _OrdersNewState extends State<OrdersNew> {
                               activeColor: Colors.green,
                               activeTrackColor: Colors.green[100],
                               inactiveTrackColor: Colors.red,
-                              // inactiveThumbColor: Colors.red,
                             ),
                     ],
                   )
@@ -418,11 +427,19 @@ class _OrdersNewState extends State<OrdersNew> {
             ),
             body: Container(
               child: loading
-                  ? const Center(
+                  ? Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.greenAccent,
+                        ),
+                      ),
+                    ) /*const Center(
                       child: CircularProgressIndicator(
                         color: Colors.white,
                       ),
-                    )
+                    )*/
                   : CustomScrollView(
                       slivers: <Widget>[
                         SliverToBoxAdapter(
@@ -599,7 +616,9 @@ class _OrdersNewState extends State<OrdersNew> {
   }
 
   Widget _newItems() {
-    return Container(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 1.6,
       child: newItemsLoading || confirmItemsLoading
           ? loadingItems()
           : newItems(newOrders.body),

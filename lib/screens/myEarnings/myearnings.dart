@@ -628,7 +628,7 @@ class _MyEarningsState extends State<MyEarnings> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: <Widget>[
@@ -1125,14 +1125,18 @@ class _MyEarningsState extends State<MyEarnings> {
               backgroundColor: const Color(0xff2c3539),
               appBar: _appBar(),
               body: SingleChildScrollView(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: loading
-                      ? const Center(
+                child: loading
+                    ? SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        child: const Center(
                           child: CircularProgressIndicator(),
-                        )
-                      : Column(
+                        ),
+                      )
+                    : Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
@@ -1176,13 +1180,13 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   Text(
                                     'Details',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(20),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.grey),
                                   ),
@@ -1195,7 +1199,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             ),
                           ],
                         ),
-                ),
+                      ),
               ),
               drawer: SideDrawer(
                 screenNo: screenNum,
@@ -1204,8 +1208,6 @@ class _MyEarningsState extends State<MyEarnings> {
           },
         );
       },
-      // ),
-      // ),
     );
   }
 }

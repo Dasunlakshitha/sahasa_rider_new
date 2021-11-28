@@ -589,7 +589,9 @@ class _AllOrdersState extends State<AllOrders> {
                   },
                   child: loading
                       ? Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: Colors.orange,
+                          ),
                         )
                       : Container(
                           width: MediaQuery.of(context).size.width,
@@ -605,9 +607,15 @@ class _AllOrdersState extends State<AllOrders> {
                                 child: _search(),
                               ),
                               loadingDate
-                                  ? Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.orange,
+                                  ? SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              1.4,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.orange,
+                                        ),
                                       ),
                                     )
                                   : _orders(),
@@ -616,7 +624,6 @@ class _AllOrdersState extends State<AllOrders> {
                         ),
                 );
               },
-              // ),
             ),
             drawer: SideDrawer(
               screenNo: screenNum,
