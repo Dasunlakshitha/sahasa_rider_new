@@ -210,11 +210,11 @@ class _MyEarningsState extends State<MyEarnings> {
                 color: Colors.white),
           ),
           Card(
-            color: Colors.transparent,
+            //color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.greenAccent[100],
+                color: Colors.green[100],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
@@ -247,11 +247,11 @@ class _MyEarningsState extends State<MyEarnings> {
                             Container(
                               // alignment: Alignment(1, 0),
                               child: Text(
-                                'Rs. ${this.earning.body.totalCashDelivery.toStringAsFixed(2)}',
+                                'Rs. ${earning.body.totalCashDelivery.toStringAsFixed(2)}',
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue[700]),
                               ),
                             ),
                             const SizedBox(
@@ -291,7 +291,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue[700]),
                               ),
                             ),
                             const SizedBox(
@@ -337,7 +337,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue[700]),
                               ),
                             ),
                           ],
@@ -366,7 +366,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue[700]),
                               ),
                             ),
                           ],
@@ -393,7 +393,7 @@ class _MyEarningsState extends State<MyEarnings> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: Colors.orange[100],
+                color: Colors.blue[100],
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black,
@@ -426,11 +426,11 @@ class _MyEarningsState extends State<MyEarnings> {
                             Container(
                               // alignment: Alignment(1, 0),
                               child: Text(
-                                'Rs. ${this.earning.body.totalOnlineDelivery.toString()}',
+                                'Rs. ${earning.body.totalOnlineDelivery.toString()}',
                                 style: TextStyle(
                                     fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
+                                    color: Colors.blue[700]),
                               ),
                             ),
                             const SizedBox(
@@ -472,7 +472,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               style: TextStyle(
                                   fontSize: ScreenUtil().setSp(18),
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.blue),
+                                  color: Colors.blue[700]),
                             ),
                           ],
                         ),
@@ -496,7 +496,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               style: TextStyle(
                                   fontSize: ScreenUtil().setSp(18),
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.blue),
+                                  color: Colors.blue[700]),
                             ),
                           ],
                         ),
@@ -553,7 +553,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   height: 5,
                 ),
                 Text(
-                  '-Rs. ${this.earning.body.deliveryCash.toStringAsFixed(2)}',
+                  '-Rs. ${earning.body.deliveryCash.toStringAsFixed(2)}',
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(16),
                       fontWeight: FontWeight.bold,
@@ -1151,7 +1151,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white24,
+                                  color: Colors.black38,
                                   borderRadius: BorderRadius.circular(5)),
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
@@ -1164,7 +1164,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                     style: TextStyle(
                                         fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.amberAccent),
+                                        color: Colors.orange),
                                   ),
                                   const SizedBox(
                                     height: 5,

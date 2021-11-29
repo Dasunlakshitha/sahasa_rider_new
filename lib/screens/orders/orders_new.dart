@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
 import 'package:sahasa_rider_new/helpers/sendfirebase.dart';
@@ -56,13 +57,22 @@ class _OrdersNewState extends State<OrdersNew> {
   Timer timer;
   int newOrderCount;
 
+  double destinationLatitude;
+  double destinationLongtude;
+
   PushNotifications _notificationInfo;
   FirebaseMessaging _messaging;
+
+  String _currentAddress;
+  var latitude;
+  var longtude;
+  StreamSubscription<Position> streamSubscription;
 
   @override
   void initState() {
     super.initState();
     getData();
+    getPosition();
     registerNotification();
 
     checkIntitialMessage();
@@ -115,63 +125,63 @@ class _OrdersNewState extends State<OrdersNew> {
               duration: const Duration(seconds: 3));
           _playSound();
 
-          showDialog(
-            context: context,
-            builder: (Context) => AlertDialog(
-              backgroundColor: Colors.transparent,
-              content: Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: Text(
-                          message.notification.title,
-                          style: const TextStyle(
-                              decoration: TextDecoration.none,
-                              fontSize: (20),
-                              color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color:
-                        message.notification.title == 'New Order(s) Available!'
-                            ? Colors.blue
-                            : Colors.green,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-              actions: <Widget>[
-                FlatButton(
-                  child: const Text(
-                    'Ok',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  onPressed: () {
-                    // _stopSound();
-                    Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.of(context, rootNavigator: true).pop();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => OrdersNew(
-                                  screenNum: 0,
-                                )));
-                  },
-                ),
-              ],
-            ),
-          );
+          // showDialog(
+          //   context: context,
+          //   builder: (Context) => AlertDialog(
+          //     backgroundColor: Colors.transparent,
+          //     content: Align(
+          //       alignment: Alignment.center,
+          //       child: Container(
+          //         width: MediaQuery.of(context).size.width,
+          //         height: MediaQuery.of(context).size.height * 0.3,
+          //         child: Column(
+          //           mainAxisAlignment: MainAxisAlignment.center,
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: <Widget>[
+          //             const SizedBox(
+          //               height: 20,
+          //             ),
+          //             Center(
+          //               child: Text(
+          //                 message.notification.title,
+          //                 style: const TextStyle(
+          //                     decoration: TextDecoration.none,
+          //                     fontSize: (20),
+          //                     color: Colors.white),
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //         decoration: BoxDecoration(
+          //           color:
+          //               message.notification.title == 'New Order(s) Available!'
+          //                   ? Colors.blue
+          //                   : Colors.green,
+          //           borderRadius: BorderRadius.circular(20),
+          //         ),
+          //       ),
+          //     ),
+          //     actions: <Widget>[
+          //       FlatButton(
+          //         child: const Text(
+          //           'Ok',
+          //           style: TextStyle(color: Colors.white, fontSize: 20),
+          //         ),
+          //         onPressed: () {
+          //           // _stopSound();
+          //           Navigator.of(context, rootNavigator: true).pop();
+          //           Navigator.of(context, rootNavigator: true).pop();
+          //           Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (context) => OrdersNew(
+          //                         screenNum: 0,
+          //                       )));
+          //         },
+          //       ),
+          //     ],
+          //   ),
+          // );
         }
       });
     } else {
@@ -356,6 +366,38 @@ class _OrdersNewState extends State<OrdersNew> {
     }
   }
 
+  getPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    streamSubscription =
+        Geolocator.getPositionStream().listen((Position position) {
+      setState(() {
+        latitude = position.latitude;
+        longtude = position.longitude;
+      });
+    });
+
+    return await Geolocator.getCurrentPosition();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -387,7 +429,11 @@ class _OrdersNewState extends State<OrdersNew> {
                       fontSize: (20),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  TextButton(
+                      onPressed: () {
+                        MapUtils.openMap(12.132, 6.13213);
+                      },
+                      child: const Text("press")),
                   Row(
                     children: <Widget>[
                       const Text(
@@ -763,11 +809,13 @@ class _OrdersNewState extends State<OrdersNew> {
                 child: cardDet(items[i]),
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => OneOrder(
-                              orderNo: items[i].orderNo.toString(),
-                              id: items[i].id)));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OneOrder(
+                          orderNo: items[i].orderNo.toString(),
+                          id: items[i].id),
+                    ),
+                  );
                 },
               ),
             ),
@@ -1000,9 +1048,15 @@ class _OrdersNewState extends State<OrdersNew> {
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
+                RaisedButton(
+                  onPressed: () {
+                    MapUtils.openMap(destinationLatitude, destinationLongtude);
+                  },
+                  child: const Text("Directions"),
+                ),
               ],
             ),
-            Divider(),
+            const Divider(),
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               child: Text(

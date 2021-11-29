@@ -60,7 +60,12 @@ dependencies:
   firebase_auth: ^3.2.0
   firebase_auth_web: ^3.2.0
   #date_range_picker: ^1.0.7
-  #flutter_holo_date_picker: ^1.0.1+2
+  #flutter_holo_date_picker: ^1.0.1+2s
+  google_maps_flutter: ^2.1.1
+  location: ^4.3.0  
+  geolocator: ^7.7.1
+  
+
 
 dev_dependencies:
   flutter_test:

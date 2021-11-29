@@ -17,6 +17,7 @@ import 'package:sahasa_rider_new/models/orders.dart';
 import 'package:sahasa_rider_new/models/user.dart';
 import 'package:sahasa_rider_new/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Api {
   // for cookie set
@@ -581,6 +582,45 @@ class Api {
         result.message = defaultErrorMsg;
         return result;
       }
+    }
+  }
+
+  openGoogleMap() async {
+    try {
+      Response response = await _dio.get('');
+      return Users.fromJson(response.data);
+    } catch (e) {
+      if (e.response.statusCode == 400) {
+        Users result = Users();
+        result.message = 'Bad Request.';
+        return result;
+      } else if (e.response.statusCode == 401) {
+        Users result = Users();
+        result.message = 'Unauthorize.';
+        return result;
+      } else if (e.response.statusCode == 503) {
+        Users result = Users();
+        result.message = 'Service Unavailable.';
+        return result;
+      } else {
+        Users result = Users();
+        result.message = defaultErrorMsg;
+        return result;
+      }
+    }
+  }
+}
+
+class MapUtils {
+  MapUtils._();
+  static Future<void> openMap(
+      double destinationLatitude, double destinationLongtude) async {
+    String googleMapUrl =
+        "https://www.google.com/maps/dir/?api=1&origin=&destination=6.996009,80.965275&travelmode=driving&dir_action=navigate";
+    if (await canLaunch(googleMapUrl)) {
+      await launch(googleMapUrl);
+    } else {
+      throw "couldnt launch";
     }
   }
 }
