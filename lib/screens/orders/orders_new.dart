@@ -124,64 +124,7 @@ class _OrdersNewState extends State<OrdersNew> {
               background: Colors.green,
               duration: const Duration(seconds: 3));
           _playSound();
-
-          // showDialog(
-          //   context: context,
-          //   builder: (Context) => AlertDialog(
-          //     backgroundColor: Colors.transparent,
-          //     content: Align(
-          //       alignment: Alignment.center,
-          //       child: Container(
-          //         width: MediaQuery.of(context).size.width,
-          //         height: MediaQuery.of(context).size.height * 0.3,
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: <Widget>[
-          //             const SizedBox(
-          //               height: 20,
-          //             ),
-          //             Center(
-          //               child: Text(
-          //                 message.notification.title,
-          //                 style: const TextStyle(
-          //                     decoration: TextDecoration.none,
-          //                     fontSize: (20),
-          //                     color: Colors.white),
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //         decoration: BoxDecoration(
-          //           color:
-          //               message.notification.title == 'New Order(s) Available!'
-          //                   ? Colors.blue
-          //                   : Colors.green,
-          //           borderRadius: BorderRadius.circular(20),
-          //         ),
-          //       ),
-          //     ),
-          //     actions: <Widget>[
-          //       FlatButton(
-          //         child: const Text(
-          //           'Ok',
-          //           style: TextStyle(color: Colors.white, fontSize: 20),
-          //         ),
-          //         onPressed: () {
-          //           // _stopSound();
-          //           Navigator.of(context, rootNavigator: true).pop();
-          //           Navigator.of(context, rootNavigator: true).pop();
-          //           Navigator.push(
-          //               context,
-          //               MaterialPageRoute(
-          //                   builder: (context) => OrdersNew(
-          //                         screenNum: 0,
-          //                       )));
-          //         },
-          //       ),
-          //     ],
-          //   ),
-          // );
+          _showAlertDialog();
         }
       });
     } else {
@@ -189,66 +132,94 @@ class _OrdersNewState extends State<OrdersNew> {
     }
   }
 
-  // Future<void> _comingSoonDialog() async {
+  Future<void> _showAlertDialog() async {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OrdersNew(
+                      screenNum: 0,
+                    )));
+      },
+    );
 
-  //   return showDialog(
-  //       context: context,
-  //       builder: (Context) => AlertDialog(
-  //             backgroundColor: Colors.transparent,
-  //             content: Align(
-  //               alignment: Alignment.center,
-  //               child: Container(
-  //                 width: MediaQuery.of(context).size.width,
-  //                 height: MediaQuery.of(context).size.height * 0.3,
-  //                 child: Column(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   crossAxisAlignment: CrossAxisAlignment.center,
-  //                   children: const <Widget>[
-  //                     SizedBox(
-  //                       height: 20,
-  //                     ),
-  //                     Center(
-  //                       child: Text(
-  //                         "",
-  //                         //message.notification.title,
-  //                         style: TextStyle(
-  //                             decoration: TextDecoration.none,
-  //                             fontSize: (20),
-  //                             color: Colors.white),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 decoration: BoxDecoration(
-  //                   color: Colors.amber,
-  //                   // message.notification.title == 'New Order(s) Available!'
-  //                   //     ? Colors.blue
-  //                   //     : Colors.green,
-  //                   borderRadius: BorderRadius.circular(20),
-  //                 ),
-  //               ),
-  //             ),
-  //             actions: <Widget>[
-  //               FlatButton(
-  //                 child: const Text(
-  //                   'Ok',
-  //                   style: TextStyle(color: Colors.white, fontSize: 20),
-  //                 ),
-  //                 onPressed: () {
-  //                   // _stopSound();
-  //                   Navigator.of(context, rootNavigator: true).pop();
-  //                   Navigator.of(context, rootNavigator: true).pop();
-  //                   Navigator.push(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                           builder: (context) => OrdersNew(
-  //                                 screenNum: 0,
-  //                               )));
-  //                 },
-  //               ),
-  //             ],
-  //           ));
-  // }
+    AlertDialog alert = AlertDialog(
+      title: Text("Alert"),
+      content: Text("New Order(s) Available!"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
+
+    // return showDialog(
+    //   context: context,
+    //   builder: (Context) => AlertDialog(
+    //     backgroundColor: Colors.transparent,
+    //     content: Align(
+    //       alignment: Alignment.center,
+    //       child: Container(
+    //         width: MediaQuery.of(context).size.width,
+    //         height: MediaQuery.of(context).size.height * 0.3,
+    //         child: Column(
+    //           mainAxisAlignment: MainAxisAlignment.center,
+    //           crossAxisAlignment: CrossAxisAlignment.center,
+    //           children: const <Widget>[
+    //             SizedBox(
+    //               height: 20,
+    //             ),
+    //             Center(
+    //               child: Text(
+    //                 "",
+    //                 //message.notification.title,
+    //                 style: TextStyle(
+    //                     decoration: TextDecoration.none,
+    //                     fontSize: (20),
+    //                     color: Colors.white),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //         decoration: BoxDecoration(
+    //           color: Colors.white54,
+    //           // message.notification.title == 'New Order(s) Available!'
+    //           //     ? Colors.blue
+    //           //     : Colors.green,
+    //           borderRadius: BorderRadius.circular(20),
+    //         ),
+    //       ),
+    //     ),
+    //     actions: <Widget>[
+    //       FlatButton(
+    //         child: const Text(
+    //           'Ok',
+    //           style: TextStyle(color: Colors.white, fontSize: 20),
+    //         ),
+    //         onPressed: () {
+    //           // _stopSound();
+    //           Navigator.of(context, rootNavigator: true).pop();
+    //           Navigator.of(context, rootNavigator: true).pop();
+    //           Navigator.push(
+    //               context,
+    //               MaterialPageRoute(
+    //                   builder: (context) => OrdersNew(
+    //                         screenNum: 0,
+    //                       )));
+    //         },
+    //       ),
+    //     ],
+    //   ),
+    // );
+  }
 
   checkIntitialMessage() async {
     await Firebase.initializeApp();
@@ -583,6 +554,7 @@ class _OrdersNewState extends State<OrdersNew> {
                                           ),
                                         )),
                                     onTap: () {
+                                      //_showAlertDialog();
                                       changeCategory('Confirmed');
                                     },
                                   ),

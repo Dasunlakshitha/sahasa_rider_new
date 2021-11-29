@@ -171,6 +171,7 @@ class _SideDrawerState extends State<SideDrawer> {
                 ),
                 child: Column(
                   children: [
+                    Padding(padding: EdgeInsets.only(top: 10)),
                     const SizedBox(height: 10),
                     const Text("Rider Details",
                         style: TextStyle(
@@ -182,22 +183,24 @@ class _SideDrawerState extends State<SideDrawer> {
                         ? Container()
                         : Row(
                             children: [
+                              Padding(padding: EdgeInsets.all(10)),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("  Name         :  ${getRider.name}",
+                                  const Padding(padding: EdgeInsets.all(10)),
+                                  Text("Name         :  ${getRider.name}",
                                       style: const TextStyle(
                                           color: Colors.white, fontSize: 15)),
                                   // const SizedBox(height: 5),
                                   //Text("Vehicle Type : ${getRider.vehicleType}"),
                                   const SizedBox(height: 8),
                                   Text(
-                                      "  Vehicle Nu :  ${getRider.vehicleNumber}",
+                                      "Vehicle Nu :  ${getRider.vehicleNumber}",
                                       style: const TextStyle(
                                           color: Colors.white, fontSize: 15)),
                                   const SizedBox(height: 8),
                                   Text(
-                                      "  Contact      :  +94 ${getRider.contactNo}",
+                                      "Contact      :  +94 ${getRider.contactNo}",
                                       style: const TextStyle(
                                           color: Colors.white, fontSize: 15)),
                                   const SizedBox(height: 5),

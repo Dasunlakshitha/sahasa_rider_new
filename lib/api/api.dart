@@ -616,11 +616,11 @@ class MapUtils {
   static Future<void> openMap(
       double destinationLatitude, double destinationLongtude) async {
     String googleMapUrl =
-        "https://www.google.com/maps/dir/?api=1&origin=&destination=6.996009,80.965275&travelmode=driving&dir_action=navigate";
+        "https://www.google.com/maps/dir/?api=1&origin=&destination=6.995000,80.994275&travelmode=driving&dir_action=navigate";
     if (await canLaunch(googleMapUrl)) {
       await launch(googleMapUrl);
     } else {
-      throw "couldnt launch";
+      throw "cannot launch";
     }
   }
 }
