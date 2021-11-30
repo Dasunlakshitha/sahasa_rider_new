@@ -1021,7 +1021,7 @@ class _MyEarningsState extends State<MyEarnings> {
                     Container(
                       // alignment: Alignment(1, 0),
                       child: Text(
-                        '-Rs. ${this.earning.body.items[i].deliveryCash.toStringAsFixed(2)}',
+                        '-Rs. ${earning.body.items[i].deliveryCash.toStringAsFixed(2)}',
                         style: TextStyle(
                             fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold,

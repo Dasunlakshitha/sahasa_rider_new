@@ -1,26 +1,26 @@
-  class Order {
+class Order {
   bool done;
   Body body;
   String message;
 
-    Order({this.done, this.body, this.message});
+  Order({this.done, this.body, this.message});
 
   Order.fromJson(Map<String, dynamic> json) {
     done = json['done'];
-    body = json['body'] != null ? new Body.fromJson(json['body']) : null;
+    body = json['body'] != null ? Body.fromJson(json['body']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['done'] = this.done;
-    if (this.body != null) {
-      data['body'] = this.body.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['done'] = done;
+    if (body != null) {
+      data['body'] = body.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
-  }
+}
 
 class Body {
   var id;
@@ -52,36 +52,36 @@ class Body {
   var latitude;
   var longitude;
 
-  Body(
-      {this.id,
-      this.orderNo,
-      this.contactName,
-      this.contactNo,
-      this.address,
-      this.comment,
-      this.accountId,
-      this.status,
-      this.date,
-      this.lastUpdated,
-      this.nic,
-      this.distance,
-      this.returnNote,
-      this.deliveryPersonId,
-      this.distanceValue,
-      this.canceledReason,
-      this.contactNoSecondary,
-      this.partnerId,
-      this.deliveryTime,
-      this.advancePaymentAmount,
-      this.convenienceFee,
-      this.serviceCharge,
-      this.orderStatus,
-      this.items,
-      this.subTotal,
-      this.remain,
-      this.latitude,
-      this.longitude,
-      });
+  Body({
+    this.id,
+    this.orderNo,
+    this.contactName,
+    this.contactNo,
+    this.address,
+    this.comment,
+    this.accountId,
+    this.status,
+    this.date,
+    this.lastUpdated,
+    this.nic,
+    this.distance,
+    this.returnNote,
+    this.deliveryPersonId,
+    this.distanceValue,
+    this.canceledReason,
+    this.contactNoSecondary,
+    this.partnerId,
+    this.deliveryTime,
+    this.advancePaymentAmount,
+    this.convenienceFee,
+    this.serviceCharge,
+    this.orderStatus,
+    this.items,
+    this.subTotal,
+    this.remain,
+    this.latitude,
+    this.longitude,
+  });
 
   Body.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -108,9 +108,9 @@ class Body {
     serviceCharge = json['service_charge'];
     orderStatus = json['order_status'];
     if (json['items'] != null) {
-      items = new List<Items>();
+      items = List<Items>();
       json['items'].forEach((v) {
-        items.add(new Items.fromJson(v));
+        items.add(Items.fromJson(v));
       });
     }
     subTotal = json['sub_total'];
@@ -121,36 +121,36 @@ class Body {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['order_no'] = this.orderNo;
-    data['contact_name'] = this.contactName;
-    data['contact_no'] = this.contactNo;
-    data['address'] = this.address;
-    data['comment'] = this.comment;
-    data['account_id'] = this.accountId;
-    data['status'] = this.status;
-    data['date'] = this.date;
-    data['last_updated'] = this.lastUpdated;
-    data['nic'] = this.nic;
-    data['distance'] = this.distance;
-    data['return_note'] = this.returnNote;
-    data['delivery_person_id'] = this.deliveryPersonId;
-    data['distance_value'] = this.distanceValue;
-    data['canceled_reason'] = this.canceledReason;
-    data['contact_no_secondary'] = this.contactNoSecondary;
-    data['partner_id'] = this.partnerId;
-    data['delivery_time'] = this.deliveryTime;
-    data['advance_payment_amount'] = this.advancePaymentAmount;
-    data['convenience_fee'] = this.convenienceFee;
-    data['service_charge'] = this.serviceCharge;
-    data['order_status'] = this.orderStatus;
-    if (this.items != null) {
-      data['items'] = this.items.map((v) => v.toJson()).toList();
+    data['id'] = id;
+    data['order_no'] = orderNo;
+    data['contact_name'] = contactName;
+    data['contact_no'] = contactNo;
+    data['address'] = address;
+    data['comment'] = comment;
+    data['account_id'] = accountId;
+    data['status'] = status;
+    data['date'] = date;
+    data['last_updated'] = lastUpdated;
+    data['nic'] = nic;
+    data['distance'] = distance;
+    data['return_note'] = returnNote;
+    data['delivery_person_id'] = deliveryPersonId;
+    data['distance_value'] = distanceValue;
+    data['canceled_reason'] = canceledReason;
+    data['contact_no_secondary'] = contactNoSecondary;
+    data['partner_id'] = partnerId;
+    data['delivery_time'] = deliveryTime;
+    data['advance_payment_amount'] = advancePaymentAmount;
+    data['convenience_fee'] = convenienceFee;
+    data['service_charge'] = serviceCharge;
+    data['order_status'] = orderStatus;
+    if (items != null) {
+      data['items'] = items.map((v) => v.toJson()).toList();
     }
-    data['sub_total'] = this.subTotal;
-    data['remain'] = this.remain;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
+    data['sub_total'] = subTotal;
+    data['remain'] = remain;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
     return data;
   }
 }
@@ -162,7 +162,7 @@ class Items {
   var partnerLong;
   List<OrderItems> orderItems;
 
-  Items({this.name, this.contactNo, this.orderItems});
+  Items({name, contactNo, orderItems});
 
   Items.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -172,19 +172,19 @@ class Items {
     if (json['order_items'] != null) {
       orderItems = new List<OrderItems>();
       json['order_items'].forEach((v) {
-        orderItems.add(new OrderItems.fromJson(v));
+        orderItems.add(OrderItems.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['contact_no'] = this.contactNo;
-    data['partner_lat'] = this.partnerLat;
-    data['partner_long'] = this.partnerLong;
-    if (this.orderItems != null) {
-      data['order_items'] = this.orderItems.map((v) => v.toJson()).toList();
+    data['name'] = name;
+    data['contact_no'] = contactNo;
+    data['partner_lat'] = partnerLat;
+    data['partner_long'] = partnerLong;
+    if (orderItems != null) {
+      data['order_items'] = orderItems.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -226,15 +226,15 @@ class OrderItems {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['quantity'] = this.quantity;
-    data['order_id'] = this.orderId;
-    data['total_amount'] = this.totalAmount;
-    data['item_id'] = this.itemId;
-    data['unit'] = this.unit;
-    data['package_id'] = this.packageId;
-    data['item_status'] = this.itemStatus;
+    data['id'] = id;
+    data['name'] = name;
+    data['quantity'] = quantity;
+    data['order_id'] = orderId;
+    data['total_amount'] = totalAmount;
+    data['item_id'] = itemId;
+    data['unit'] = unit;
+    data['package_id'] = packageId;
+    data['item_status'] = itemStatus;
     return data;
   }
 }
