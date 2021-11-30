@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/helpers/calculateDistance.dart';
@@ -155,8 +156,8 @@ class _OneOrderState extends State<OneOrder> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'Order(${order.body.orderNo})',
-            style: const TextStyle(fontSize: (18)),
+            'Order (${order.body.orderNo})',
+            style: TextStyle(fontSize: 30.sp),
           ),
           Container(
             // height: 20,
@@ -167,7 +168,7 @@ class _OneOrderState extends State<OneOrder> {
               child: Text(
                 order.body.orderStatus,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: (14), color: Colors.white),
+                style: TextStyle(fontSize: 20.sp, color: Colors.white),
               ),
               onPressed: () {},
               shape: RoundedRectangleBorder(
@@ -203,16 +204,16 @@ class _OneOrderState extends State<OneOrder> {
                     // ignore: prefer_const_constructors
                     child: Text(
                       'Delivery Address: ',
-                      style: const TextStyle(
-                          fontSize: (15), fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: (23.sp), fontWeight: FontWeight.w400),
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.46,
                     child: Text(
-                      this.order.body.address,
-                      style: const TextStyle(
-                          fontSize: (15),
+                      order.body.address,
+                      style: TextStyle(
+                          fontSize: (23.sp),
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                     ),
@@ -229,7 +230,7 @@ class _OneOrderState extends State<OneOrder> {
                     child: Text(
                       'Delivery Time: ',
                       style: TextStyle(
-                          fontSize: (15), fontWeight: FontWeight.w400),
+                          fontSize: (23.sp), fontWeight: FontWeight.w400),
                     ),
                   ),
                   Container(
@@ -240,7 +241,7 @@ class _OneOrderState extends State<OneOrder> {
                         Text(
                           orderDate,
                           style: TextStyle(
-                              fontSize: (15),
+                              fontSize: (23.sp),
                               fontWeight: FontWeight.bold,
                               color: today == orderDate
                                   ? Colors.black
@@ -252,7 +253,7 @@ class _OneOrderState extends State<OneOrder> {
                         Text(
                           orderTime,
                           style: TextStyle(
-                              fontSize: (15),
+                              fontSize: (23.sp),
                               fontWeight: FontWeight.bold,
                               color: today == orderDate
                                   ? Colors.black
@@ -275,15 +276,15 @@ class _OneOrderState extends State<OneOrder> {
                         Text(
                           'Order No: ',
                           style: TextStyle(
-                              fontSize: (15), fontWeight: FontWeight.w400),
+                              fontSize: (23.sp), fontWeight: FontWeight.w400),
                         ),
                         SizedBox(
                           width: 10,
                         ),
                         Text(
-                          this.order.body.orderNo.toString(),
+                          order.body.orderNo.toString(),
                           style: TextStyle(
-                              fontSize: (15),
+                              fontSize: (23.sp),
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
@@ -303,18 +304,18 @@ class _OneOrderState extends State<OneOrder> {
                   Row(
                     children: <Widget>[
                       Text(
-                        'Phone No: ',
+                        'Phone No : ',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: (15),
+                            fontSize: (23.sp),
                             color: Colors.black,
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        this.order.body.contactNo,
+                        order.body.contactNo,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: (15),
+                            fontSize: (23.sp),
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                       ),
@@ -327,11 +328,11 @@ class _OneOrderState extends State<OneOrder> {
                     child: FlatButton(
                       color: Colors.blue,
                       child: Row(
-                        children: const <Widget>[
+                        children: <Widget>[
                           Icon(
                             Icons.call,
                             color: Colors.white,
-                            size: (15),
+                            size: (25.sp),
                           ),
                           SizedBox(
                             width: 5,
@@ -339,7 +340,7 @@ class _OneOrderState extends State<OneOrder> {
                           Text(
                             'Call',
                             style: TextStyle(
-                                fontSize: (15),
+                                fontSize: (25.sp),
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -395,16 +396,16 @@ class _OneOrderState extends State<OneOrder> {
                       children: <Widget>[
                         Text(
                           item.name,
-                          style: const TextStyle(
-                              fontSize: (13), fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: (23.sp), fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
                           '${item.unit} x ${item.quantity}',
-                          style: const TextStyle(
-                              fontSize: (18), fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: (23.sp), fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -417,7 +418,8 @@ class _OneOrderState extends State<OneOrder> {
                       color: statusColor,
                       child: Text(
                         item.itemStatus,
-                        style: TextStyle(fontSize: (15), color: Colors.white),
+                        style:
+                            TextStyle(fontSize: (23.sp), color: Colors.white),
                       ),
                       onPressed: () {},
                       shape: RoundedRectangleBorder(
@@ -454,10 +456,10 @@ class _OneOrderState extends State<OneOrder> {
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width * 0.27,
-                    child: const Text(
+                    child: Text(
                       'Store Name: ',
                       style: TextStyle(
-                        fontSize: (18),
+                        fontSize: (25.sp),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -467,7 +469,7 @@ class _OneOrderState extends State<OneOrder> {
                     child: Text(
                       partner.name,
                       style: TextStyle(
-                          fontSize: (18),
+                          fontSize: (25.sp),
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                     ),
@@ -481,10 +483,10 @@ class _OneOrderState extends State<OneOrder> {
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width * 0.27,
-                    child: const Text(
+                    child: Text(
                       'Pickup Time: ',
                       style: TextStyle(
-                        fontSize: (15),
+                        fontSize: (23.sp),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -497,7 +499,7 @@ class _OneOrderState extends State<OneOrder> {
                         Text(
                           deliveryDate,
                           style: TextStyle(
-                              fontSize: (15),
+                              fontSize: (23.sp),
                               fontWeight: FontWeight.bold,
                               color: today == deliveryDate
                                   ? Colors.black
@@ -509,7 +511,7 @@ class _OneOrderState extends State<OneOrder> {
                         Text(
                           deliveryTime,
                           style: TextStyle(
-                              fontSize: (15),
+                              fontSize: (23.sp),
                               fontWeight: FontWeight.bold,
                               color: today == deliveryDate
                                   ? Colors.black
@@ -529,11 +531,11 @@ class _OneOrderState extends State<OneOrder> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      const Text(
-                        'Phone No: ',
+                      Text(
+                        'Phone No : ',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: (15),
+                            fontSize: (23.sp),
                             color: Colors.black,
                             fontWeight: FontWeight.w400),
                       ),
@@ -541,7 +543,7 @@ class _OneOrderState extends State<OneOrder> {
                         partner.contactNo ?? '',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: (15),
+                            fontSize: (23.sp),
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                       ),
@@ -554,11 +556,11 @@ class _OneOrderState extends State<OneOrder> {
                     child: FlatButton(
                       color: Colors.blue,
                       child: Row(
-                        children: const <Widget>[
+                        children: <Widget>[
                           Icon(
                             Icons.call,
                             color: Colors.white,
-                            size: (20),
+                            size: (23.sp),
                           ),
                           SizedBox(
                             width: 5,
@@ -566,7 +568,7 @@ class _OneOrderState extends State<OneOrder> {
                           Text(
                             'Call',
                             style: TextStyle(
-                                fontSize: (15),
+                                fontSize: (23.sp),
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -782,14 +784,14 @@ class _OneOrderState extends State<OneOrder> {
               Text(
                 'Subtotal',
                 style: TextStyle(
-                    fontSize: (18),
+                    fontSize: (25.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
               Text(
                 'Rs. ${num.parse(this.order.body.subTotal).toStringAsFixed(2)}',
                 style: TextStyle(
-                    fontSize: (18),
+                    fontSize: (25.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
@@ -806,14 +808,14 @@ class _OneOrderState extends State<OneOrder> {
               Text(
                 'Delivery Fee',
                 style: TextStyle(
-                    fontSize: (18),
+                    fontSize: (25.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
               Text(
                 'Rs. ${num.parse(order.body.distanceValue).toStringAsFixed(2)}',
                 style: TextStyle(
-                    fontSize: (18),
+                    fontSize: (25.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
@@ -831,14 +833,14 @@ class _OneOrderState extends State<OneOrder> {
                 Text(
                   'Convenience Fee',
                   style: TextStyle(
-                      fontSize: (18),
+                      fontSize: (23.sp),
                       fontWeight: FontWeight.bold,
                       color: Colors.white70),
                 ),
                 Text(
                   'Rs. ${num.parse(order.body.convenienceFee).toStringAsFixed(2)}',
                   style: TextStyle(
-                      fontSize: (18),
+                      fontSize: (23.sp),
                       fontWeight: FontWeight.bold,
                       color: Colors.white70),
                 ),
@@ -856,7 +858,7 @@ class _OneOrderState extends State<OneOrder> {
               Text(
                 'Grand total',
                 style: TextStyle(
-                    fontSize: (20),
+                    fontSize: (23.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
@@ -864,7 +866,7 @@ class _OneOrderState extends State<OneOrder> {
                 'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal)).toStringAsFixed(2)}',
                 style: TextStyle(
                     color: Colors.white70,
-                    fontSize: (20),
+                    fontSize: (23.sp),
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -880,15 +882,15 @@ class _OneOrderState extends State<OneOrder> {
               Text(
                 'Paid Amount',
                 style: TextStyle(
-                    fontSize: (18),
+                    fontSize: (23.sp),
                     fontWeight: FontWeight.bold,
                     color: Colors.white70),
               ),
               Text(
                 'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal) - num.parse(this.order.body.remain)).toStringAsFixed(2)}',
                 style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: (18),
+                    color: Colors.white70,
+                    fontSize: (23.sp),
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -900,6 +902,12 @@ class _OneOrderState extends State<OneOrder> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(640, 1136),
+        orientation: Orientation.portrait);
     return Builder(
       builder: (BuildContext context) {
         return OfflineBuilder(
@@ -940,9 +948,12 @@ class _OneOrderState extends State<OneOrder> {
                               Text(
                                 'Delivery Details',
                                 style: TextStyle(
-                                    fontSize: (18),
+                                    fontSize: (27.sp),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white70),
+                              ),
+                              SizedBox(
+                                height: 10,
                               ),
                               _deliveryDet(),
                               SizedBox(
@@ -953,7 +964,7 @@ class _OneOrderState extends State<OneOrder> {
                                 child: Text(
                                   'Pickup Details',
                                   style: TextStyle(
-                                      fontSize: (18),
+                                      fontSize: (27.sp),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white70),
                                 ),
@@ -977,14 +988,14 @@ class _OneOrderState extends State<OneOrder> {
                                 'Remaining Amount',
                                 style: TextStyle(
                                     color: Colors.white70,
-                                    fontSize: (15),
+                                    fontSize: (27.sp),
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 'Rs. ${num.parse(order.body.remain).toStringAsFixed(2)}',
                                 style: TextStyle(
                                     color: Colors.greenAccent,
-                                    fontSize: (15),
+                                    fontSize: (27.sp),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
