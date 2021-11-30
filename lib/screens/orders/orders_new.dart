@@ -977,15 +977,15 @@ class _OrdersNewState extends State<OrdersNew> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    const Text(
+                    Text(
                       'Pickup Time: ',
                       style: TextStyle(
-                          fontSize: (15), fontWeight: FontWeight.bold),
+                          fontSize: (23.sp), fontWeight: FontWeight.bold),
                     ),
                     Text(
                       Jiffy(item.deliveryTime).format('MM-dd h:mm a'),
-                      style: const TextStyle(
-                          fontSize: (15),
+                      style: TextStyle(
+                          fontSize: (23.sp),
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                     ),
@@ -1000,12 +1000,11 @@ class _OrdersNewState extends State<OrdersNew> {
                     child: Text(
                       item.orderStatus,
                       textAlign: TextAlign.center,
-                      style:
-                          const TextStyle(fontSize: (12), color: Colors.white),
+                      style: TextStyle(fontSize: (22.sp), color: Colors.white),
                     ),
                     onPressed: () {},
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)),
+                        borderRadius: BorderRadius.circular(8)),
                   ),
                 ),
               ],
@@ -1014,24 +1013,47 @@ class _OrdersNewState extends State<OrdersNew> {
               height: 5,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text(
-                  'Order No: ',
-                  style: TextStyle(fontSize: (15), fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  item.orderNo.toString(),
-                  style: const TextStyle(
-                      fontSize: (15),
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue),
+                Row(
+                  children: [
+                    Text(
+                      'Order No: ',
+                      style: TextStyle(
+                          fontSize: (23.sp), fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      item.orderNo.toString(),
+                      style: TextStyle(
+                          fontSize: (23.sp),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue),
+                    ),
+                  ],
                 ),
                 RaisedButton(
+                  color: Colors.blue,
                   onPressed: () {
                     MapUtils.openMap(destinationLatitude, destinationLongtude);
                   },
-                  child: const Text("Directions"),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "MAP",
+                        style: TextStyle(fontSize: 23.sp, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ],
             ),
