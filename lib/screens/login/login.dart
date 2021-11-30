@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/helpers/user_authentication_service.dart';
 import 'package:sahasa_rider_new/models/login.dart';
@@ -27,6 +28,12 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(640, 1136),
+        orientation: Orientation.portrait);
     return Scaffold(
       backgroundColor: Colors.white12,
       body: SingleChildScrollView(
@@ -104,11 +111,11 @@ class _LogInState extends State<LogIn> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Username',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 30.sp,
                 color: Colors.white,
               ),
             ),
@@ -129,33 +136,33 @@ class _LogInState extends State<LogIn> {
                   loginData.username = value.toString();
                 });
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                  enabledBorder: OutlineInputBorder(
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                  enabledBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
                     borderSide: BorderSide(color: Colors.grey, width: 2),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
                     borderSide: BorderSide(color: Colors.blue, width: 2),
                   ),
                   fillColor: Colors.black,
-                  hintStyle: TextStyle(fontSize: 15, color: Colors.white70),
+                  hintStyle: TextStyle(fontSize: 20.sp, color: Colors.white70),
                   hintText: 'Username'),
             ),
             const SizedBox(
               height: 20,
             ),
-            const Text(
+            Text(
               'Password',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 30.sp,
                 color: Colors.white,
               ),
             ),
@@ -175,23 +182,23 @@ class _LogInState extends State<LogIn> {
                   loginData.password = value.toString();
                 });
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                   borderSide: BorderSide(color: Colors.grey, width: 2),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                   borderSide: BorderSide(color: Colors.blue, width: 2),
                 ),
                 fillColor: Colors.black,
-                hintStyle: TextStyle(fontSize: 15, color: Colors.white70),
+                hintStyle: TextStyle(fontSize: 20.sp, color: Colors.white70),
                 hintText: 'Password',
                 // suffixIcon:IconButton(onPressed: (){}, icon: Icon(Icons.visibility_off)),
               ),
@@ -219,11 +226,11 @@ class _LogInState extends State<LogIn> {
             ? const CircularProgressIndicator(
                 color: Colors.orange,
               )
-            : const Text(
+            : Text(
                 "Login",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                    fontSize: 35.sp,
                     color: Colors.white),
               ),
       ),
