@@ -34,7 +34,6 @@ class _SideDrawerState extends State<SideDrawer> {
       loading = true;
     });
     bool log = await Api().logout();
-
     if (log) {
       removeUserAuthPref(key: "ssUserAuth");
       Navigator.pushAndRemoveUntil(
@@ -50,7 +49,7 @@ class _SideDrawerState extends State<SideDrawer> {
 
   getRideDetails() async {
     getRider = User.fromJson(await getUserAuthPref(key: "ssUserAuth"));
-    if (getRider.id != null) {
+    if (getRider != null) {
       setState(() {
         riderDataLoading = true;
       });
@@ -136,7 +135,7 @@ class _SideDrawerState extends State<SideDrawer> {
                               style: TextStyle(
                                   color: screenNo == index
                                       ? Colors.greenAccent[400]
-                                      : Colors.white70,
+                                      : const Color(0xfffffafa),
                                   fontSize: 25.sp,
                                   fontWeight: FontWeight.w900),
                             ),
@@ -172,16 +171,14 @@ class _SideDrawerState extends State<SideDrawer> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.black12,
                     ),
                     child: Column(
                       children: [
-                        const Padding(
-                            padding: EdgeInsets.only(top: 0, bottom: 20)),
+                        const Padding(padding: EdgeInsets.only(top: 10)),
 
                         //const SizedBox(height: 10),
                         Text(
@@ -192,7 +189,7 @@ class _SideDrawerState extends State<SideDrawer> {
                             fontSize: 23.sp,
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 12),
                         !riderDataLoading
                             ? Container()
                             : Row(
@@ -202,7 +199,8 @@ class _SideDrawerState extends State<SideDrawer> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("Name         :  ${getRider.name}",
+                                      Text(
+                                          "Name             :  ${getRider.name}",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 21.sp,
@@ -211,18 +209,26 @@ class _SideDrawerState extends State<SideDrawer> {
                                       //Text("Vehicle Type : ${getRider.vehicleType}"),
                                       const SizedBox(height: 8),
                                       Text(
-                                          "Vehicle Nu :  ${getRider.vehicleNumber}",
+                                          "Vehicle Nu     :  ${getRider.vehicleNumber}",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 21.sp,
                                           )),
                                       const SizedBox(height: 8),
                                       Text(
-                                          "Contact      :  +94 ${getRider.contactNo}",
+                                          "Contact          :  ${getRider.contactNo}",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 21.sp,
                                           )),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        "Vehicle type   :  ${getRider.vehicleType}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 21.sp,
+                                        ),
+                                      ),
                                       const SizedBox(height: 10),
                                     ],
                                   )

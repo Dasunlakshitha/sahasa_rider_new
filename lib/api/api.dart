@@ -559,7 +559,7 @@ class Api {
     }
   }
 
-  Future<Users> getRiderDetails(BuildContext context) async {
+  Future<Users> getRiderDetails() async {
     try {
       Response response =
           await _dio.get('$baseUrl/api/v1/delivery-personnel/:id ');
@@ -585,7 +585,7 @@ class Api {
     }
   }
 
-  openGoogleMap() async {
+  Future getLocation() async {
     try {
       Response response = await _dio.get('');
       return Users.fromJson(response.data);

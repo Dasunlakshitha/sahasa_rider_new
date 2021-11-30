@@ -684,7 +684,10 @@ class _OrdersNewState extends State<OrdersNew> {
             child: Card(
               elevation: 4,
               child: Container(
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.white,
+                ),
                 padding: const EdgeInsets.only(
                     top: 10, bottom: 10, left: 15, right: 15),
                 child: Column(
@@ -1004,7 +1007,7 @@ class _OrdersNewState extends State<OrdersNew> {
                     ),
                     onPressed: () {},
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
+                        borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
               ],
@@ -1071,7 +1074,7 @@ class _OrdersNewState extends State<OrdersNew> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const <Widget>[
+              children: <Widget>[
                 InkWell(
                     onTap: null,
                     child: Text(
@@ -1079,7 +1082,7 @@ class _OrdersNewState extends State<OrdersNew> {
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.bold,
-                          fontSize: (12)),
+                          fontSize: (20.sp)),
                     ))
               ],
             ),

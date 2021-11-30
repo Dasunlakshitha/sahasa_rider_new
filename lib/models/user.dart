@@ -53,7 +53,7 @@ class User {
   var contactNo;
   var vehicleNumber;
   var accountId;
-  // var vehicleType;
+  var vehicleType;
 
   User({
     this.id,
@@ -64,7 +64,7 @@ class User {
     this.contactNo,
     this.vehicleNumber,
     this.accountId,
-    //this.vehicleType,
+    this.vehicleType,
   });
 
   User.fromJson(Map<String, dynamic> json) {
@@ -76,7 +76,7 @@ class User {
     contactNo = json['contact_no'];
     vehicleNumber = json['vehicle_number'];
     accountId = json['account_id'];
-    // vehicleType = json['vehicle_type'];
+    vehicleType = json['vehicle_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -89,7 +89,7 @@ class User {
     data['contact_no'] = contactNo;
     data['vehicle_number'] = vehicleNumber;
     data['account_id'] = accountId;
-    // data['vehicle_type'] = vehicleType;
+    data['vehicle_type'] = vehicleType;
     return data;
   }
 }

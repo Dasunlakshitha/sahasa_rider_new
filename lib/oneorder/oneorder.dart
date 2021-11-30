@@ -191,7 +191,7 @@ class _OneOrderState extends State<OneOrder> {
         color: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(5),
             color: Colors.green[50],
           ),
           padding: EdgeInsets.all(10),
@@ -445,7 +445,7 @@ class _OneOrderState extends State<OneOrder> {
         color: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(5),
             color: Colors.blue[50],
           ),
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
