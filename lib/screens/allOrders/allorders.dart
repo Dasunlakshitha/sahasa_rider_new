@@ -92,7 +92,7 @@ class _AllOrdersState extends State<AllOrders> {
           Text(
             "Completed Orders",
             style: TextStyle(
-              fontSize: ScreenUtil().setSp(19),
+              fontSize: ScreenUtil().setSp(30),
             ),
           ),
           SizedBox(
@@ -102,7 +102,7 @@ class _AllOrdersState extends State<AllOrders> {
           Text(
             "Orders : 0" + orderCount().toString(),
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 25.sp,
                 color: Colors.white70,
                 fontWeight: FontWeight.bold),
           )
@@ -170,7 +170,7 @@ class _AllOrdersState extends State<AllOrders> {
                             Text(
                               getStartDate(),
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 23.sp,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -178,7 +178,7 @@ class _AllOrdersState extends State<AllOrders> {
                             Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.white,
-                              size: 15,
+                              size: 23.sp,
                             )
                           ],
                         ),
@@ -207,7 +207,7 @@ class _AllOrdersState extends State<AllOrders> {
                             Text(
                               getLastDate(),
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 23.sp,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -215,7 +215,7 @@ class _AllOrdersState extends State<AllOrders> {
                             Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.white,
-                              size: 15,
+                              size: 23.sp,
                             ),
                           ],
                         ),
@@ -287,13 +287,13 @@ class _AllOrdersState extends State<AllOrders> {
                     Text(
                       'Pickup Time: ',
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(15),
+                          fontSize: ScreenUtil().setSp(25),
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       Jiffy(item.deliveryTime).format('MM-dd h:mm a'),
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(15),
+                          fontSize: ScreenUtil().setSp(23),
                           fontWeight: FontWeight.bold,
                           color: Colors.red),
                     ),
@@ -309,7 +309,7 @@ class _AllOrdersState extends State<AllOrders> {
                       item.status,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(12),
+                          fontSize: ScreenUtil().setSp(20),
                           color: Colors.white),
                     ),
                     onPressed: () {},
@@ -328,13 +328,13 @@ class _AllOrdersState extends State<AllOrders> {
                 Text(
                   'Order No: ',
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(25),
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
                   item.orderNo.toString(),
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(23),
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
@@ -347,7 +347,7 @@ class _AllOrdersState extends State<AllOrders> {
                 item.address,
                 style: TextStyle(
                     color: Colors.red,
-                    fontSize: ScreenUtil().setSp(15),
+                    fontSize: ScreenUtil().setSp(23),
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -362,7 +362,7 @@ class _AllOrdersState extends State<AllOrders> {
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.bold,
-                          fontSize: ScreenUtil().setSp(12)),
+                          fontSize: ScreenUtil().setSp(20)),
                     ))
               ],
             ),
@@ -549,12 +549,11 @@ class _AllOrdersState extends State<AllOrders> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(
-      BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width,
-          maxHeight: MediaQuery.of(context).size.height),
-    );
-    ScreenUtil().setWidth(640);
-    ScreenUtil().setHeight(1136);
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(640, 1136),
+        orientation: Orientation.portrait);
 
     return Builder(builder: (BuildContext context) {
       return OfflineBuilder(
