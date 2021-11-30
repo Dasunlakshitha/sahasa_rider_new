@@ -57,7 +57,7 @@ class _MyEarningsState extends State<MyEarnings> {
           Text(
             "My Earnings",
             style: TextStyle(
-              fontSize: ScreenUtil().setSp(20),
+              fontSize: 30.sp,
             ),
           ),
         ],
@@ -205,7 +205,7 @@ class _MyEarningsState extends State<MyEarnings> {
           Text(
             'Cash on delivery',
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(18),
+                fontSize: ScreenUtil().setSp(25),
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -237,7 +237,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Delivery(${earning.body.totalCashOrders.toString()})',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: ScreenUtil().setSp(23),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -249,7 +249,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Rs. ${earning.body.totalCashDelivery.toStringAsFixed(2)}',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: ScreenUtil().setSp(25),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue[700]),
                               ),
@@ -261,7 +261,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 '${earning.body.totalCashDelivery.toStringAsFixed(2)} X 100%',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(13),
+                                    fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -277,7 +277,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Pick and Drop(${earning.body.totalPickup != null ? earning.body.totalPickup.toString() : 0})',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: ScreenUtil().setSp(23),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -289,7 +289,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Rs. ${earning.body.pickCash != null ? (earning.body.pickCash * 0.8).toStringAsFixed(2) : 0.00}',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: ScreenUtil().setSp(25),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue[700]),
                               ),
@@ -301,7 +301,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 '${earning.body.pickCash != null ? earning.body.pickCash.toStringAsFixed(2) : 0.00} x 80%',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(13),
+                                    fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -323,7 +323,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Total Bonus',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: ScreenUtil().setSp(23),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -335,7 +335,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Rs. ${earning.body.totalCashBonus.toStringAsFixed(2)}',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: ScreenUtil().setSp(25),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue[700]),
                               ),
@@ -352,7 +352,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Total Earnings',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: ScreenUtil().setSp(23),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -364,7 +364,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Rs. ${(earning.body.totalCashDelivery + earning.body.totalCashBonus).toStringAsFixed(2)}',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: ScreenUtil().setSp(25),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue[700]),
                               ),
@@ -384,7 +384,7 @@ class _MyEarningsState extends State<MyEarnings> {
           Text(
             'Online Payments',
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(18),
+                fontSize: ScreenUtil().setSp(25),
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -416,7 +416,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Delivery(${earning.body.totalOnlineOrders.toString()})',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(15),
+                                    fontSize: ScreenUtil().setSp(23),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -428,7 +428,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 'Rs. ${earning.body.totalOnlineDelivery.toString()}',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(18),
+                                    fontSize: ScreenUtil().setSp(25),
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue[700]),
                               ),
@@ -440,7 +440,7 @@ class _MyEarningsState extends State<MyEarnings> {
                               child: Text(
                                 '${earning.body.totalOnlineDelivery} X 100%',
                                 style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(13),
+                                    fontSize: ScreenUtil().setSp(18),
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -461,7 +461,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Text(
                               'Total Bonus',
                               style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(15),
+                                  fontSize: ScreenUtil().setSp(23),
                                   fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
@@ -470,7 +470,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Text(
                               'Rs. ${earning.body.totalOnlineBonus.toStringAsFixed(2)}',
                               style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(18),
+                                  fontSize: ScreenUtil().setSp(25),
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blue[700]),
                             ),
@@ -485,7 +485,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Text(
                               'Total Earnings',
                               style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(15),
+                                  fontSize: ScreenUtil().setSp(23),
                                   fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
@@ -494,7 +494,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Text(
                               'Rs. ${(earning.body.totalOnlineDelivery + earning.body.totalOnlineBonus).toStringAsFixed(2)}',
                               style: TextStyle(
-                                  fontSize: ScreenUtil().setSp(18),
+                                  fontSize: ScreenUtil().setSp(25),
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blue[700]),
                             ),
@@ -519,7 +519,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Cash in Hand',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -529,7 +529,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Rs. ${(earning.body.orderCash - earning.body.onlineCash).toStringAsFixed(2)}',
                   // "001",
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
@@ -546,7 +546,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Delivery Charge',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -555,7 +555,7 @@ class _MyEarningsState extends State<MyEarnings> {
                 Text(
                   '-Rs. ${earning.body.deliveryCash.toStringAsFixed(2)}',
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
@@ -572,7 +572,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Total Bonus',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -581,7 +581,7 @@ class _MyEarningsState extends State<MyEarnings> {
                 Text(
                   '-Rs. ${(earning.body.totalOnlineBonus + earning.body.totalCashBonus).toStringAsFixed(2)}',
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
@@ -598,7 +598,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Cash Balance',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -608,7 +608,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   'Rs. ${((earning.body.orderCash - earning.body.onlineCash) - (earning.body.deliveryCash + earning.body.totalOnlineBonus + earning.body.totalCashBonus)).toStringAsFixed(2)}',
                   //"100",
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: ScreenUtil().setSp(22),
                       fontWeight: FontWeight.bold,
                       color: Colors.blue),
                 ),
@@ -635,7 +635,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   Text(
                     Jiffy(earning.body.items[i].orderDate).format('MMM do yy'),
                     style: TextStyle(
-                        fontSize: ScreenUtil().setSp(18),
+                        fontSize: ScreenUtil().setSp(25),
                         color: Colors.orange,
                         fontWeight: FontWeight.bold),
                   ),
@@ -651,7 +651,7 @@ class _MyEarningsState extends State<MyEarnings> {
               Text(
                 'Cash on delivery',
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(18),
+                    fontSize: ScreenUtil().setSp(25),
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -683,7 +683,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Delivery(${earning.body.items[i].totalCashOrders.toString()})',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -696,7 +696,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                     'Rs. ${this.earning.body.items[i].totalCashDelivery.toStringAsFixed(2)}',
                                     //'Rs. ${this.earning.body.totalCashDelivery.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -708,7 +708,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     '${earning.body.items[i].totalCashDelivery.toStringAsFixed(2)} X 100%',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(13),
+                                        fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -724,7 +724,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Pick and Drop()',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -736,7 +736,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Rs. ${earning.body.items[i].totalCashDelivery.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -748,7 +748,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     '${earning.body.totalCashBonus} X 80%',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(13),
+                                        fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -770,7 +770,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Total Bonus',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -782,7 +782,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Rs. ${earning.body.items[i].cashBonus.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -799,7 +799,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Total Earnings',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -812,7 +812,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                     //'Rs. ${(this.earning.body.items[i].cashBonus + this.earning.body.items[i].deliveryCash).toStringAsFixed(2)}',
                                     'Rs. ${(earning.body.items[i].totalCashDelivery + earning.body.items[i].cashBonus).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -832,7 +832,7 @@ class _MyEarningsState extends State<MyEarnings> {
               Text(
                 'Online Payments',
                 style: TextStyle(
-                    fontSize: ScreenUtil().setSp(18),
+                    fontSize: ScreenUtil().setSp(25),
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -865,7 +865,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Delivery(${earning.body.items[i].totalOnlineOrders.toString()})',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -877,7 +877,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Rs. ${this.earning.body.items[i].totalOnlineDelivery.toString()}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -889,7 +889,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     '${earning.body.items[i].totalOnlineDelivery} X 100%',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(13),
+                                        fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -911,7 +911,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Total Bonus',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -923,7 +923,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Rs. ${earning.body.items[i].onlineBonus.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -940,7 +940,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Total Earnings',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(15),
+                                        fontSize: ScreenUtil().setSp(23),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -952,7 +952,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   child: Text(
                                     'Rs. ${(earning.body.items[i].totalOnlineDelivery + earning.body.items[i].onlineBonus).toStringAsFixed(2)}',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue),
                                   ),
@@ -979,7 +979,7 @@ class _MyEarningsState extends State<MyEarnings> {
                         'Cash in Hand',
                         style: TextStyle(
                             color: Colors.white70,
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -992,7 +992,7 @@ class _MyEarningsState extends State<MyEarnings> {
                         'Rs. ${(earning.body.items[i].orderCash - earning.body.items[i].onlineCash).toStringAsFixed(2)}',
                         // "001",
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold,
                             color: Colors.blue),
                       ),
@@ -1011,7 +1011,7 @@ class _MyEarningsState extends State<MyEarnings> {
                         'Delivery Charge',
                         style: TextStyle(
                             color: Colors.white70,
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -1023,7 +1023,7 @@ class _MyEarningsState extends State<MyEarnings> {
                       child: Text(
                         '-Rs. ${this.earning.body.items[i].deliveryCash.toStringAsFixed(2)}',
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold,
                             color: Colors.blue),
                       ),
@@ -1042,7 +1042,7 @@ class _MyEarningsState extends State<MyEarnings> {
                         'Total Bonus',
                         style: TextStyle(
                             color: Colors.white70,
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -1054,7 +1054,7 @@ class _MyEarningsState extends State<MyEarnings> {
                       child: Text(
                         '-Rs. ${(earning.body.items[i].onlineBonus + earning.body.items[i].cashBonus).toStringAsFixed(2)}',
                         style: TextStyle(
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold,
                             color: Colors.blue),
                       ),
@@ -1073,7 +1073,7 @@ class _MyEarningsState extends State<MyEarnings> {
                         'Cash Balance',
                         style: TextStyle(
                             color: Colors.white70,
-                            fontSize: ScreenUtil().setSp(16),
+                            fontSize: ScreenUtil().setSp(22),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -1084,7 +1084,7 @@ class _MyEarningsState extends State<MyEarnings> {
                       'Rs. ${((earning.body.items[i].orderCash - earning.body.items[i].onlineCash) - (earning.body.items[i].deliveryCash + earning.body.items[i].onlineBonus + earning.body.items[i].cashBonus)).toStringAsFixed(2)}',
                       //"100",
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(16),
+                          fontSize: ScreenUtil().setSp(22),
                           fontWeight: FontWeight.bold,
                           color: Colors.blue),
                     ),
@@ -1099,13 +1099,6 @@ class _MyEarningsState extends State<MyEarnings> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width,
-          maxHeight: MediaQuery.of(context).size.height),
-    );
-    ScreenUtil().setWidth(640);
-    ScreenUtil().setHeight(1136);
     return Builder(
       builder: (BuildContext context) {
         return OfflineBuilder(
@@ -1121,6 +1114,12 @@ class _MyEarningsState extends State<MyEarnings> {
             }
           },
           builder: (BuildContext context) {
+            ScreenUtil.init(
+                BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width,
+                    maxHeight: MediaQuery.of(context).size.height),
+                designSize: const Size(640, 1136),
+                orientation: Orientation.portrait);
             return Scaffold(
               backgroundColor: const Color(0xff2c3539),
               appBar: _appBar(),
@@ -1162,7 +1161,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   Text(
                                     'Summary',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(18),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.orange),
                                   ),
@@ -1186,7 +1185,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                   Text(
                                     'Details',
                                     style: TextStyle(
-                                        fontSize: ScreenUtil().setSp(20),
+                                        fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
                                         color: Colors.grey),
                                   ),
