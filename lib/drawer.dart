@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sahasa_rider_new/screens/allOrders/allorders.dart';
 import 'package:sahasa_rider_new/screens/login/login.dart';
 import 'package:sahasa_rider_new/api/api.dart';
 import 'package:sahasa_rider_new/screens/myEarnings/myearnings.dart';
 import 'package:sahasa_rider_new/screens/orders/orders_new.dart';
-
 import 'helpers/user_authentication_service.dart';
 import 'models/user.dart';
 
@@ -72,6 +72,12 @@ class _SideDrawerState extends State<SideDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(640, 1136),
+        orientation: Orientation.portrait);
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.65, //20.0,
       child: Drawer(
@@ -123,7 +129,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                     : Colors.white70,
                               ),
                             const SizedBox(
-                              width: 20,
+                              width: 12,
                             ),
                             Text(
                               screens[index],
@@ -131,7 +137,7 @@ class _SideDrawerState extends State<SideDrawer> {
                                   color: screenNo == index
                                       ? Colors.greenAccent[400]
                                       : Colors.white70,
-                                  fontSize: (15),
+                                  fontSize: 25.sp,
                                   fontWeight: FontWeight.w900),
                             ),
                           ],
@@ -162,54 +168,70 @@ class _SideDrawerState extends State<SideDrawer> {
                 height: 50,
               ),
               Expanded(
-                  child: Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.black12,
-                ),
-                child: Column(
-                  children: [
-                    Padding(padding: EdgeInsets.only(top: 10)),
-                    const SizedBox(height: 10),
-                    const Text("Rider Details",
-                        style: TextStyle(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.black12,
+                    ),
+                    child: Column(
+                      children: [
+                        const Padding(
+                            padding: EdgeInsets.only(top: 0, bottom: 20)),
+
+                        //const SizedBox(height: 10),
+                        Text(
+                          "Rider Details",
+                          style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15)),
-                    const SizedBox(height: 15),
-                    !riderDataLoading
-                        ? Container()
-                        : Row(
-                            children: [
-                              Padding(padding: EdgeInsets.all(10)),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            fontSize: 23.sp,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        !riderDataLoading
+                            ? Container()
+                            : Row(
                                 children: [
                                   const Padding(padding: EdgeInsets.all(10)),
-                                  Text("Name         :  ${getRider.name}",
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  // const SizedBox(height: 5),
-                                  //Text("Vehicle Type : ${getRider.vehicleType}"),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                      "Vehicle Nu :  ${getRider.vehicleNumber}",
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                      "Contact      :  +94 ${getRider.contactNo}",
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  const SizedBox(height: 5),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Name         :  ${getRider.name}",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 21.sp,
+                                          )),
+                                      // const SizedBox(height: 5),
+                                      //Text("Vehicle Type : ${getRider.vehicleType}"),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                          "Vehicle Nu :  ${getRider.vehicleNumber}",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 21.sp,
+                                          )),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                          "Contact      :  +94 ${getRider.contactNo}",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 21.sp,
+                                          )),
+                                      const SizedBox(height: 10),
+                                    ],
+                                  )
                                 ],
                               )
-                            ],
-                          )
-                  ],
-                ),
+                      ],
+                    ),
+                  ),
+                ],
               )),
               Expanded(
                   child: Align(
@@ -225,9 +247,9 @@ class _SideDrawerState extends State<SideDrawer> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Icon(
+                        Icon(
                           Icons.input,
-                          size: (25),
+                          size: 30.sp,
                           color: Colors.white70,
                         ),
                         const SizedBox(
@@ -238,11 +260,11 @@ class _SideDrawerState extends State<SideDrawer> {
                                 height: (25),
                                 width: (25),
                                 child: CircularProgressIndicator())
-                            : const Text(
+                            : Text(
                                 "Logout",
                                 style: TextStyle(
                                     color: Colors.white70,
-                                    fontSize: (20),
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                       ],

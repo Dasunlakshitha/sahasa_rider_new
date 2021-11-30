@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:sahasa_rider_new/screens/connection_check/connection_check.dart';
@@ -374,6 +375,12 @@ class _OrdersNewState extends State<OrdersNew> {
     final size = MediaQuery.of(context).size;
     key:
     myGlobals.scaffoldKey;
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(640, 1136),
+        orientation: Orientation.portrait);
     return Builder(builder: (context) {
       return OfflineBuilder(connectivityBuilder: (
         BuildContext context,
@@ -394,10 +401,10 @@ class _OrdersNewState extends State<OrdersNew> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     "Orders",
                     style: TextStyle(
-                      fontSize: (20),
+                      fontSize: 30.sp,
                     ),
                   ),
                   TextButton(
@@ -407,10 +414,10 @@ class _OrdersNewState extends State<OrdersNew> {
                       child: const Text("press")),
                   Row(
                     children: <Widget>[
-                      const Text(
+                      Text(
                         'Available',
                         style: TextStyle(
-                          fontSize: (18),
+                          fontSize: 27.sp,
                         ),
                       ),
                       loading
@@ -486,7 +493,7 @@ class _OrdersNewState extends State<OrdersNew> {
                                         child: Text(
                                           'All',
                                           style: TextStyle(
-                                              fontSize: (15),
+                                              fontSize: 22.sp,
                                               color: pressAll
                                                   ? Colors.white
                                                   : Colors.green,
@@ -517,7 +524,7 @@ class _OrdersNewState extends State<OrdersNew> {
                                           child: Text(
                                             'New',
                                             style: TextStyle(
-                                                fontSize: (15),
+                                                fontSize: 22.sp,
                                                 color: pressNew
                                                     ? Colors.white
                                                     : Colors.orange,
@@ -546,7 +553,7 @@ class _OrdersNewState extends State<OrdersNew> {
                                           child: Text(
                                             'Confirmed',
                                             style: TextStyle(
-                                                fontSize: (15),
+                                                fontSize: 22.sp,
                                                 color: pressConfirm
                                                     ? Colors.white
                                                     : Colors.blue,
@@ -662,8 +669,8 @@ class _OrdersNewState extends State<OrdersNew> {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Text(
             'New Orders(${newOrders.body.length})',
-            style: const TextStyle(
-                fontSize: (16),
+            style: TextStyle(
+                fontSize: 26.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -685,16 +692,16 @@ class _OrdersNewState extends State<OrdersNew> {
                   children: <Widget>[
                     Text(
                       'Order No: ${items[i].orderNo}',
-                      style: const TextStyle(
-                          fontSize: (15), fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 25.sp, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     Text(
                       'Address :  ${items[i].address}',
-                      style: const TextStyle(
-                          fontSize: (15), fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 25.sp, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       width: 10,
@@ -707,10 +714,10 @@ class _OrdersNewState extends State<OrdersNew> {
                             width: MediaQuery.of(context).size.width * 0.3,
                             child: FlatButton(
                               color: Colors.red,
-                              child: const Text(
+                              child: Text(
                                 'Reject',
                                 style: TextStyle(
-                                    fontSize: (15),
+                                    fontSize: 25.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -727,10 +734,10 @@ class _OrdersNewState extends State<OrdersNew> {
                             width: MediaQuery.of(context).size.width * 0.3,
                             child: FlatButton(
                               color: Colors.green,
-                              child: const Text(
+                              child: Text(
                                 'Confirm',
                                 style: TextStyle(
-                                    fontSize: (15),
+                                    fontSize: 25.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -765,8 +772,8 @@ class _OrdersNewState extends State<OrdersNew> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
               'Confirmed Order(${confirmOrders.body.length})',
-              style: const TextStyle(
-                  fontSize: (16),
+              style: TextStyle(
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
@@ -803,21 +810,21 @@ class _OrdersNewState extends State<OrdersNew> {
           // color: Colors.green,
           alignment: Alignment.center,
           child: type == 'reject'
-              ? const Text(
+              ? Text(
                   'Please Confirm.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
-                      fontSize: (20)),
+                      fontSize: 25.sp),
                 )
-              : const Text(
+              : Text(
                   'Please Confirm.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: (20)),
+                      fontSize: 25.sp),
                 ),
         ),
         backgroundColor: Colors.white,

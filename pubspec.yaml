@@ -47,7 +47,7 @@ dependencies:
   loading_overlay: ^0.3.0
   background_geolocation_plugin: ^0.1.1
   path_provider: ^2.0.6
-  flutter_screenutil: ^5.0.0+2
+  flutter_screenutil: ^5.0.1
   cookie_jar: ^3.0.1
   dio_cookie_manager: ^2.0.0
   firebase_messaging: ^11.1.0
