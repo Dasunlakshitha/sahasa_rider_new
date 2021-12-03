@@ -178,6 +178,7 @@ class _MyEarningsState extends State<MyEarnings> {
     setState(() {
       data.startDate = datePicked;
     });
+    earning.body.items.clear();
     getData();
   }
 
@@ -623,7 +624,7 @@ class _MyEarningsState extends State<MyEarnings> {
   Widget details() {
     return Column(
       children: <Widget>[
-        for (var i = 0; i < earning.body.items.length; i++)
+        for (int i = earning.body.items.length - 1; i > 0; i--)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

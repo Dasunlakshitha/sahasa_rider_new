@@ -23,7 +23,7 @@ class OneOrder extends StatefulWidget {
       : super(key: key);
 
   @override
-  _OneOrderState createState() => _OneOrderState(this.id, this.orderNo);
+  _OneOrderState createState() => _OneOrderState(id, orderNo);
 }
 
 class _OneOrderState extends State<OneOrder> {

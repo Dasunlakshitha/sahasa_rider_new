@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sahasa_rider_new/models/completeOrders.dart';
 import 'package:sahasa_rider_new/screens/allOrders/allorders.dart';
 import 'package:sahasa_rider_new/screens/login/login.dart';
 import 'package:sahasa_rider_new/api/api.dart';

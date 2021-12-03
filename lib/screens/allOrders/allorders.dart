@@ -399,6 +399,7 @@ class _AllOrdersState extends State<AllOrders> {
                         MaterialPageRoute(
                             builder: (context) => OneOrder(
                                   id: orders[index].id,
+                                  orderNo: '',
                                 )));
                   },
                 ),
