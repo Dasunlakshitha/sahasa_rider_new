@@ -559,31 +559,31 @@ class Api {
     }
   }
 
-  Future<Users> getRiderDetails() async {
-    try {
-      Response response =
-          await _dio.get('$baseUrl/api/v1/delivery-personnel/:id ');
-      return Users.fromJson(response.data);
-    } catch (e) {
-      if (e.response.statusCode == 400) {
-        Users result = Users();
-        result.message = 'Bad Request.';
-        return result;
-      } else if (e.response.statusCode == 401) {
-        Users result = Users();
-        result.message = 'Unauthorize.';
-        return result;
-      } else if (e.response.statusCode == 503) {
-        Users result = Users();
-        result.message = 'Service Unavailable.';
-        return result;
-      } else {
-        Users result = Users();
-        result.message = defaultErrorMsg;
-        return result;
-      }
-    }
-  }
+  // Future<Users> getRiderDetails() async {
+  //   try {
+  //     Response response =
+  //         await _dio.get('$baseUrl/api/v1/delivery-personnel/:id ');
+  //     return Users.fromJson(response.data);
+  //   } catch (e) {
+  //     if (e.response.statusCode == 400) {
+  //       Users result = Users();
+  //       result.message = 'Bad Request.';
+  //       return result;
+  //     } else if (e.response.statusCode == 401) {
+  //       Users result = Users();
+  //       result.message = 'Unauthorize.';
+  //       return result;
+  //     } else if (e.response.statusCode == 503) {
+  //       Users result = Users();
+  //       result.message = 'Service Unavailable.';
+  //       return result;
+  //     } else {
+  //       Users result = Users();
+  //       result.message = defaultErrorMsg;
+  //       return result;
+  //     }
+  //   }
+  // }
 
   Future getLocation() async {
     try {

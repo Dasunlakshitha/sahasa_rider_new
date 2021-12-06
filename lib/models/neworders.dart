@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 class NewOrders {
   bool done;
   List<Body> body;
@@ -8,16 +10,16 @@ class NewOrders {
   NewOrders.fromJson(Map<String, dynamic> json) {
     done = json['done'];
     if (json['body'] != null) {
-      body = new List<Body>();
+      body = List<Body>();
       json['body'].forEach((v) {
-        body.add(new Body.fromJson(v));
+        body.add(Body.fromJson(v));
       });
     }
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['done'] = done;
     if (body != null) {
       data['body'] = body.map((v) => v.toJson()).toList();
@@ -56,9 +58,9 @@ class Body {
     contactName = json['contact_name'];
     lastUpdated = json['last_updated'];
     if (json['partners'] != null) {
-      partners = new List<Partners>();
+      partners = List<Partners>();
       json['partners'].forEach((v) {
-        partners.add(new Partners.fromJson(v));
+        partners.add(Partners.fromJson(v));
       });
     }
   }
@@ -89,7 +91,7 @@ class Partners {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['name'] = name;
     return data;
   }

@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors, no_logic_in_create_state
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -595,16 +597,21 @@ class _AllOrdersState extends State<AllOrders> {
                         )
                       : Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          margin: const EdgeInsets.symmetric(vertical: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
-                              Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                padding: const EdgeInsets.only(left: 15),
-                                color: Colors.transparent,
-                                child: _search(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    padding: const EdgeInsets.only(left: 15),
+                                    color: Colors.transparent,
+                                    child: _search(),
+                                  ),
+                                ],
                               ),
                               loadingDate
                                   ? SizedBox(

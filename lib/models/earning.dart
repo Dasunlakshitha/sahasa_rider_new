@@ -146,7 +146,7 @@ class Items {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['pick_cash'] = pickCash;
     data['order_cash'] = orderCash;
     data['total_pickup'] = totalPickup;

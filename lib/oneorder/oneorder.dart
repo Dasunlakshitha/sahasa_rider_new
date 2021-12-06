@@ -863,7 +863,7 @@ class _OneOrderState extends State<OneOrder> {
                     color: Colors.white70),
               ),
               Text(
-                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal)).toStringAsFixed(2)}',
+                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(order.body.subTotal)).toStringAsFixed(2)}',
                 style: TextStyle(
                     color: Colors.white70,
                     fontSize: (23.sp),
@@ -887,7 +887,7 @@ class _OneOrderState extends State<OneOrder> {
                     color: Colors.white70),
               ),
               Text(
-                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(this.order.body.subTotal) - num.parse(this.order.body.remain)).toStringAsFixed(2)}',
+                'Rs. ${(num.parse(order.body.convenienceFee) + num.parse(order.body.distanceValue) + num.parse(order.body.subTotal) - num.parse(order.body.remain)).toStringAsFixed(2)}',
                 style: TextStyle(
                     color: Colors.white70,
                     fontSize: (23.sp),

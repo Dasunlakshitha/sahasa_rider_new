@@ -67,7 +67,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget startPage(state) {
     if (state == 'login') {
-      return LogIn();
+      return const LogIn();
     } else if (state == 'order') {
       return OrdersNew(screenNum: 0);
     } else {

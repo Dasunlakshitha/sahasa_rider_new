@@ -67,7 +67,7 @@ class _MyEarningsState extends State<MyEarnings> {
 
   Widget _search() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -78,7 +78,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(5)),
-                  width: MediaQuery.of(context).size.width * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   child: TextButton(
                     onPressed: () {
                       _openStartDate();
@@ -106,7 +106,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   ),
                 ),
                 Text(
-                  ' - ',
+                  '   -   ',
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(25),
                       color: Colors.white70,
@@ -116,7 +116,7 @@ class _MyEarningsState extends State<MyEarnings> {
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(5)),
-                  width: MediaQuery.of(context).size.width * 0.4,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   child: TextButton(
                     onPressed: () {
                       _openEndDate();
@@ -160,7 +160,7 @@ class _MyEarningsState extends State<MyEarnings> {
   }
 
   getStartDate() {
-    if (data.endDate == null) {
+    if (data.startDate == null) {
       return 'start date';
     } else {
       return Jiffy(data.startDate).format('MMM do yy');
@@ -193,6 +193,7 @@ class _MyEarningsState extends State<MyEarnings> {
     setState(() {
       data.endDate = datePicked;
     });
+    earning.body.items.clear();
     getData();
   }
 
@@ -624,7 +625,7 @@ class _MyEarningsState extends State<MyEarnings> {
   Widget details() {
     return Column(
       children: <Widget>[
-        for (int i = earning.body.items.length - 1; i > 0; i--)
+        for (int i = earning.body.items.length - 1; i >= 0; i--)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -1142,7 +1143,7 @@ class _MyEarningsState extends State<MyEarnings> {
                             Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.only(left: 15),
+                              // padding: const EdgeInsets.only(left: 15),
                               color: Colors.transparent,
                               child: _search(),
                             ),

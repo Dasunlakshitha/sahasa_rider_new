@@ -1,18 +1,18 @@
-  class Courier {
+class Courier {
   bool done;
   Body body;
   String message;
 
-    Courier({this.done, this.body, this.message});
+  Courier({this.done, this.body, this.message});
 
   Courier.fromJson(Map<String, dynamic> json) {
     done = json['done'];
-    body = json['body'] != null ?  Body.fromJson(json['body']) : null;
+    body = json['body'] != null ? Body.fromJson(json['body']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['done'] = done;
     if (body != null) {
       data['body'] = body.toJson();
@@ -20,7 +20,7 @@
     data['message'] = message;
     return data;
   }
-  }
+}
 
 class Body {
   var id;
@@ -75,9 +75,9 @@ class Body {
     deliveryPersonId = json['delivery_person_id'];
     orderStatus = json['order_status'];
     if (json['partner'] != null) {
-      partner = new List<Partner>();
+      partner = List<Partner>();
       json['partner'].forEach((v) {
-        partner.add(new Partner.fromJson(v));
+        partner.add(Partner.fromJson(v));
       });
     }
   }

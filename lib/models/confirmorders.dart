@@ -59,9 +59,9 @@ class Body {
     lastUpdated = json['last_updated'];
     orderStatus = json['order_status'];
     if (json['partners'] != null) {
-      partners = new List<Partners>();
+      partners = List<Partners>();
       json['partners'].forEach((v) {
-        partners.add(new Partners.fromJson(v));
+        partners.add(Partners.fromJson(v));
       });
     }
   }

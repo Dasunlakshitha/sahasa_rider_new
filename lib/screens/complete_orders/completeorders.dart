@@ -30,9 +30,7 @@ class _CompleteOrdersState extends State<CompleteOrders> {
                         margin: const EdgeInsets.symmetric(horizontal: 10),
                         padding: const EdgeInsets.only(left: 20),
                         color: Colors.transparent,
-                        //child:,
                       ),
-                      //loadingSearch ? _ordersShimmer() : _orders(),
                     ],
                   ),
                 );
