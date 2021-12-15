@@ -222,14 +222,14 @@ class _SideDrawerState extends State<SideDrawer> {
                                             color: Colors.white,
                                             fontSize: 21.sp,
                                           )),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        "Vehicle type   :  ${getRider.vehicleType}",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 21.sp,
-                                        ),
-                                      ),
+                                      // const SizedBox(height: 8),
+                                      // Text(
+                                      //   "Vehicle type   :  ${getRider.vehicleType}",
+                                      //   style: TextStyle(
+                                      //     color: Colors.white,
+                                      //     fontSize: 21.sp,
+                                      //   ),
+                                      // ),
                                       const SizedBox(height: 10),
                                     ],
                                   )

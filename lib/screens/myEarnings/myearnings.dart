@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sahasa_rider_new/api/api.dart';
@@ -13,7 +15,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 class MyEarnings extends StatefulWidget {
   final int screenNum;
 
-  MyEarnings({Key key, @required this.screenNum}) : super(key: key);
+  const MyEarnings({Key key, @required this.screenNum}) : super(key: key);
 
   @override
   _MyEarningsState createState() => _MyEarningsState(screenNum);
@@ -695,7 +697,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 Container(
                                   // alignment: Alignment(1, 0),
                                   child: Text(
-                                    'Rs. ${this.earning.body.items[i].totalCashDelivery.toStringAsFixed(2)}',
+                                    'Rs. ${earning.body.items[i].totalCashDelivery.toStringAsFixed(2)}',
                                     //'Rs. ${this.earning.body.totalCashDelivery.toStringAsFixed(2)}',
                                     style: TextStyle(
                                         fontSize: ScreenUtil().setSp(25),
@@ -736,7 +738,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 Container(
                                   // alignment: Alignment(1, 0),
                                   child: Text(
-                                    'Rs. ${earning.body.items[i].totalCashDelivery.toStringAsFixed(2)}',
+                                    'Rs. ${earning.body.items[i].pickCash.toStringAsFixed(2)}',
                                     style: TextStyle(
                                         fontSize: ScreenUtil().setSp(25),
                                         fontWeight: FontWeight.bold,
@@ -748,7 +750,7 @@ class _MyEarningsState extends State<MyEarnings> {
                                 ),
                                 Container(
                                   child: Text(
-                                    '${earning.body.totalCashBonus} X 80%',
+                                    '${earning.body.pickCash} X 80%',
                                     style: TextStyle(
                                         fontSize: ScreenUtil().setSp(18),
                                         fontWeight: FontWeight.bold),

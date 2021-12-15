@@ -149,7 +149,7 @@ class _AllOrdersState extends State<AllOrders> {
 
   Widget _search() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -160,7 +160,7 @@ class _AllOrdersState extends State<AllOrders> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.blue),
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: TextButton(
                       onPressed: () {
                         _openStartDate();
@@ -187,7 +187,7 @@ class _AllOrdersState extends State<AllOrders> {
                       ),
                     )),
                 Text(
-                  ' - ',
+                  '   -   ',
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(25),
                       color: Colors.white70,
@@ -197,7 +197,7 @@ class _AllOrdersState extends State<AllOrders> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.blue),
-                    width: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     child: TextButton(
                       onPressed: () {
                         _openEndDate();
@@ -606,8 +606,9 @@ class _AllOrdersState extends State<AllOrders> {
                                 children: [
                                   Container(
                                     margin: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    padding: const EdgeInsets.only(left: 15),
+                                      horizontal: 10,
+                                    ),
+                                    // padding: const EdgeInsets.only(left: 15),
                                     color: Colors.transparent,
                                     child: _search(),
                                   ),
@@ -625,7 +626,24 @@ class _AllOrdersState extends State<AllOrders> {
                                         ),
                                       ),
                                     )
-                                  : _orders(),
+                                  : orders.isEmpty
+                                      ? SizedBox(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              1.4,
+                                          child: Center(
+                                            child: Text(
+                                              "No Data",
+                                              style: TextStyle(
+                                                  fontSize: 22.sp,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        )
+                                      : _orders(),
                             ],
                           ),
                         ),

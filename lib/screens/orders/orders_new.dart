@@ -407,11 +407,11 @@ class _OrdersNewState extends State<OrdersNew> {
                       fontSize: 30.sp,
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        MapUtils.openMap(12.132, 6.13213);
-                      },
-                      child: const Text("press")),
+                  // TextButton(
+                  //     onPressed: () {
+                  //       MapUtils.openMap(12.132, 6.13213);
+                  //     },
+                  //     child: const Text("press")),
                   Row(
                     children: <Widget>[
                       Text(
@@ -681,80 +681,112 @@ class _OrdersNewState extends State<OrdersNew> {
         for (var i = 0; i < items.length; i++)
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Card(
-              elevation: 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.white,
-                ),
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 10, left: 15, right: 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Order No: ${items[i].orderNo}',
-                      style: TextStyle(
-                          fontSize: 25.sp, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Address :  ${items[i].address}',
-                      style: TextStyle(
-                          fontSize: 25.sp, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Divider(),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: FlatButton(
-                              color: Colors.red,
-                              child: Text(
-                                'Reject',
-                                style: TextStyle(
-                                    fontSize: 25.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OneOrder(
+                              id: items[i].id,
+                              orderNo: '',
+                            )));
+              },
+              child: Card(
+                elevation: 4,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
+                  ),
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 10, left: 15, right: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Order No: ${items[i].orderNo}',
+                        style: TextStyle(
+                            fontSize: 25.sp, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Address :  ${items[i].address}',
+                        style: TextStyle(
+                            fontSize: 25.sp, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Divider(),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(children: [
+                        Text(
+                          'Store :  ',
+                          style: TextStyle(
+                              fontSize: 25.sp, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          ' ${items[i].partners[0].name}',
+                          style: TextStyle(
+                              fontSize: 25.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueAccent),
+                        )
+                      ]),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Divider(),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: FlatButton(
+                                color: Colors.red,
+                                child: Text(
+                                  'Reject',
+                                  style: TextStyle(
+                                      fontSize: 25.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  _confirm(items[i].id, 'reject');
+                                },
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        color: Colors.red, width: 2),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
-                              onPressed: () {
-                                _confirm(items[i].id, 'reject');
-                              },
-                              shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      color: Colors.red, width: 2),
-                                  borderRadius: BorderRadius.circular(5)),
                             ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: FlatButton(
-                              color: Colors.green,
-                              child: Text(
-                                'Confirm',
-                                style: TextStyle(
-                                    fontSize: 25.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: FlatButton(
+                                color: Colors.green,
+                                child: Text(
+                                  'Confirm',
+                                  style: TextStyle(
+                                      fontSize: 25.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  _confirm(items[i].id, 'accept');
+                                },
+                                shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        color: Colors.green, width: 2),
+                                    borderRadius: BorderRadius.circular(5)),
                               ),
-                              onPressed: () {
-                                _confirm(items[i].id, 'accept');
-                              },
-                              shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      color: Colors.green, width: 2),
-                                  borderRadius: BorderRadius.circular(5)),
                             ),
-                          ),
-                        ]),
-                  ],
+                          ]),
+                    ],
+                  ),
                 ),
               ),
             ),
